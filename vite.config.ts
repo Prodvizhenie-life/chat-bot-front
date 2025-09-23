@@ -5,7 +5,7 @@ import mkcert from 'vite-plugin-mkcert';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/reactjs-template/',
+  base: '/chat-bot-front/',
   css: {
     preprocessorOptions: {
       scss: {
