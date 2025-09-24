@@ -18,7 +18,7 @@ if (import.meta.env.DEV) {
       section_bg_color: '#17212b',
       section_header_text_color: '#6ab3f3',
       subtitle_text_color: '#708499',
-      text_color: '#f5f5f5',
+      text_color: '#000000',
     } as const;
     const noInsets = { left: 0, top: 0, bottom: 0, right: 0 } as const;
 
