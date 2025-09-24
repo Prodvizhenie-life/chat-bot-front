@@ -15,21 +15,24 @@
     "predeploy": "npm run build"
   },
   "dependencies": {
+    "@hookform/resolvers": "5.2.2",
     "@reduxjs/toolkit": "2.9.0",
     "@tailwindcss/vite": "4.1.13",
     "@telegram-apps/sdk-react": "3.3.6",
     "@telegram-apps/telegram-ui": "2.1.9",
-    "classnames": "^2.5.1",
+    "classnames": "2.5.1",
     "eruda": "3.4.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-redux": "^9.2.0",
+    "react-hook-form": "7.63.0",
+    "react-redux": "9.2.0",
     "react-router-dom": "6.30.1",
-    "tailwindcss": "4.1.13"
+    "tailwindcss": "4.1.13",
+    "yup": "1.7.1"
   },
   "devDependencies": {
     "@eslint/js": "9.23.0",
-    "@types/node": "^20.19.11",
+    "@types/node": "20.19.11",
     "@types/react": "18.3.24",
     "@types/react-dom": "18.3.7",
     "@typescript-eslint/eslint-plugin": "7.8.0",
