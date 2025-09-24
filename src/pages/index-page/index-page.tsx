@@ -6,7 +6,7 @@ import { Page } from '@/shared/ui/page/page';
 export const IndexPage: FC = () => {
   return (
     <Page back={false}>
-      Старт
+      <h1 className='text-3xl font-bold'>Старт</h1>
     </Page>
   );
 };

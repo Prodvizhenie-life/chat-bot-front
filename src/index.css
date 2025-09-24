@@ -1,5 +1,14 @@
 @import './app/fonts/fonts.css';
 
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Montserrat', 'sans-serif';
+  --text-min: .75rem;
+  --text-ex-min: .625rem;
+}
+
+
 body {
   background: var(--tg-theme-secondary-bg-color, white);
   padding: 0;
