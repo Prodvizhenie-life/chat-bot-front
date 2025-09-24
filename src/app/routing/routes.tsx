@@ -1,22 +1,21 @@
-
 import { IndexPage } from '@/pages/index-page/index-page';
 import { ReactElement } from 'react';
 
-interface BaseRoute {
+type TBaseRoute = {
     element: ReactElement;
-    children?: RouteObject[];
-}
+    children?: TRouteObject[];
+};
 
-interface PathRoute extends BaseRoute {
+type TPathRoute = TBaseRoute & {
     path: string;
-}
+};
 
-interface IndexRoute extends BaseRoute {
+type TIndexRoute = TBaseRoute & {
     index: true;
-}
+};
 
-type RouteObject = PathRoute | IndexRoute;
+type TRouteObject = TPathRoute | TIndexRoute;
 
-export const routes: RouteObject[] = [
-    { path: '/', element: <IndexPage /> },
+export const routes: TRouteObject[] = [
+    { path: '/', element: <IndexPage /> }
 ];
