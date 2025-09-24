@@ -5,7 +5,10 @@ import ReactDOM from 'react-dom/client';
 import { StrictMode } from 'react';
 import { retrieveLaunchParams } from '@telegram-apps/sdk-react';
 
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from '@/app/store/store';
 import { Root } from '@/app/root.tsx';
+
 import { EnvUnsupported } from '@/shared/ui/env-unsupported/env-unsupported.tsx';
 import { init } from '@/init.ts';
 
@@ -17,24 +20,24 @@ import './mockEnv.ts';
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 try {
-  const launchParams = retrieveLaunchParams();
-  const { tgWebAppPlatform: platform } = launchParams;
-  const debug = (launchParams.tgWebAppStartParam || '').includes('platformer_debug')
-    || import.meta.env.DEV;
+    const launchParams = retrieveLaunchParams();
+    const { tgWebAppPlatform: platform } = launchParams;
+    const debug = (launchParams.tgWebAppStartParam || '').includes('platformer_debug') || import.meta.env.DEV;
 
-  // Configure all application dependencies.
-  await init({
-    debug,
-    eruda: debug && ['ios', 'android'].includes(platform),
-    mockForMacOS: platform === 'macos',
-  })
-    .then(() => {
-      root.render(
-        <StrictMode>
-          <Root/>
-        </StrictMode>,
-      );
+    // Configure all application dependencies.
+    await init({
+        debug,
+        eruda: debug && ['ios', 'android'].includes(platform),
+        mockForMacOS: platform === 'macos',
+    }).then(() => {
+        root.render(
+            <StrictMode>
+                <ReduxProvider store={store}>
+                    <Root />
+                </ReduxProvider>
+            </StrictMode>
+        );
     });
 } catch (e) {
-  root.render(<EnvUnsupported/>);
+    root.render(<EnvUnsupported />);
 }
