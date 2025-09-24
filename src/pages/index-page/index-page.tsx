@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { Page } from '@/components/page';
+import { Page } from '@/shared/ui/page/page';
 
 
 export const IndexPage: FC = () => {

@@ -3,7 +3,7 @@ import { Navigate, Route, Routes, HashRouter } from 'react-router-dom';
 import { retrieveLaunchParams, useSignal, isMiniAppDark } from '@telegram-apps/sdk-react';
 import { AppRoot } from '@telegram-apps/telegram-ui';
 
-import { routes } from '@/navigation/routes.tsx';
+import { routes } from '@/app/routes';
 
 export function App() {
   const lp = useMemo(() => retrieveLaunchParams(), []);

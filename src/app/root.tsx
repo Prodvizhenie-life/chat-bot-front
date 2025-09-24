@@ -1,6 +1,6 @@
 
-import { App } from '@/components/app';
-import { ErrorBoundary } from '@/components/error-boundary';
+import { App } from '@/app/app';
+import { ErrorBoundary } from '@/shared/ui/error-boundary/error-boundary';
 
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
