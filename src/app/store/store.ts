@@ -1,3 +1,4 @@
+import { userApi } from '@/entities/user/api/user-api';
 import { configureStore, Action, ThunkAction, ThunkMiddleware, UnknownAction } from '@reduxjs/toolkit';
 
 import logger from 'redux-logger';
@@ -6,9 +7,12 @@ const isDev = process.env.NODE_ENV === 'development';
 
 export const store = configureStore({
     reducer: {
+        [userApi.reducerPath]: userApi.reducer,
     },
     middleware: (getDefaultMiddleware) => {
-        const middlewares = getDefaultMiddleware()
+        const middlewares = getDefaultMiddleware().concat(
+            userApi.middleware,
+        )
 
         if (isDev) {
             middlewares.push(logger as ThunkMiddleware<any, UnknownAction>);
