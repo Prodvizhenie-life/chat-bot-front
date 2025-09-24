@@ -70,10 +70,10 @@ After this, you will see a similar message in your terminal:
 ```bash
 VITE v5.2.12  ready in 237 ms
 
-➜  Local:   https://localhost:5173/reactjs-template
-➜  Network: https://172.18.16.1:5173/reactjs-template
-➜  Network: https://172.19.32.1:5173/reactjs-template
-➜  Network: https://192.168.0.171:5173/reactjs-template
+➜  Local:   https://localhost:5173/chat-bot-front
+➜  Network: https://172.18.16.1:5173/chat-bot-front
+➜  Network: https://172.19.32.1:5173/chat-bot-front
+➜  Network: https://192.168.0.171:5173/chat-bot-front
 ➜  press h + enter to show help
 ```
 
