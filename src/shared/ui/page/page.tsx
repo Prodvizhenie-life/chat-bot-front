@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { hideBackButton, onBackButtonClick, showBackButton } from '@telegram-apps/sdk-react';
+import { hideBackButton, isTMA, onBackButtonClick, showBackButton } from '@telegram-apps/sdk-react';
 import { type PropsWithChildren, useEffect } from 'react';
 
 export function Page({ children, back = true }: PropsWithChildren<{
@@ -11,14 +11,20 @@ export function Page({ children, back = true }: PropsWithChildren<{
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (back) {
-      showBackButton();
-      return onBackButtonClick(() => {
-        navigate(-1);
-      });
+    // Показываем/скрываем кнопки только если реально Mini App
+    if (isTMA()) {
+      if (back) {
+        showBackButton();
+        const unsubscribe = onBackButtonClick(() => {
+          navigate(-1);
+        });
+        return unsubscribe; // корректно удаляем подписку
+      } else {
+        hideBackButton();
+      }
     }
-    hideBackButton();
-  }, [back]);
+    // В web-режиме ничего не делаем!
+  }, [back, navigate]);
 
   return <>{children}</>;
 }

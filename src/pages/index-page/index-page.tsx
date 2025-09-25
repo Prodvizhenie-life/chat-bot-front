@@ -4,7 +4,7 @@ import { Page } from '@/shared/ui/page/page';
 
 export const IndexPage: FC = () => {
     return (
-        <Page back={false}>
+        <Page back={true}>
             <p className="font-light ...">The quick brown fox ...</p>
             <p className="font-normal ...">The quick brown fox ...</p>
             <p className="font-medium ...">The quick brown fox ...</p>
