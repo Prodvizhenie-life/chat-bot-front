@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { TUser } from '../model/t-user';
 
 export const userApi = createApi({
-    reducerPath: 'realEstateApi',
+    reducerPath: 'userApi',
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.VITE_BACKEND_BASE_URL + '/user',
     }),

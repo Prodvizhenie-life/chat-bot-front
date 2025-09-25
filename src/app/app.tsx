@@ -20,7 +20,7 @@ export function App() {
                 ['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'
             }
         >
-            <HashRouter>
+            <HashRouter future={{ v7_relativeSplatPath: true }}> {/*warning*/}
                 <Routes>
                     {routes.map((route, i) =>
                         'index' in route ? (

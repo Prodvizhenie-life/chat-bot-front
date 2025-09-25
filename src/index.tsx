@@ -1,4 +1,3 @@
-// Include Telegram UI styles first to allow our code override the package CSS.
 import '@telegram-apps/telegram-ui/dist/styles.css';
 
 import ReactDOM from 'react-dom/client';
@@ -9,35 +8,47 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { store } from '@/app/store/store';
 import { Root } from '@/app/root.tsx';
 
-import { EnvUnsupported } from '@/shared/ui/env-unsupported/env-unsupported.tsx';
+import { setIsTelegram } from '@/features/env-mode/model/env-mode';
 import { init } from '@/init.ts';
+import { EnvUnsupported } from './shared/ui/env-unsupported/env-unsupported.tsx';
 
 import './index.css';
-
-// Mock the environment in case, we are outside Telegram.
+// Мок окружения для локальной разработки вне Telegram
 import './mockEnv.ts';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
-try {
+async function bootstrap() {
     const launchParams = retrieveLaunchParams();
-    const { tgWebAppPlatform: platform } = launchParams;
-    const debug = (launchParams.tgWebAppStartParam || '').includes('platformer_debug') || import.meta.env.DEV;
+    const isTelegram = !!launchParams.tgWebAppPlatform;
+    const platform = launchParams.tgWebAppPlatform;
+    const debug =
+        (launchParams.tgWebAppStartParam || '').includes('platformer_debug') ||
+        import.meta.env.DEV;
 
-    // Configure all application dependencies.
-    await init({
-        debug,
-        eruda: debug && ['ios', 'android'].includes(platform),
-        mockForMacOS: platform === 'macos',
-    }).then(() => {
-        root.render(
-            <StrictMode>
-                <ReduxProvider store={store}>
-                    <Root />
-                </ReduxProvider>
-            </StrictMode>
-        );
-    });
-} catch (e) {
-    root.render(<EnvUnsupported />);
+    // Кладём признак среды в store ДО рендера приложения
+    store.dispatch(setIsTelegram(isTelegram));
+
+    // Инициализация только для Telegram Mini App
+    if (isTelegram) {
+        await init({
+            debug,
+            eruda: debug && ['ios', 'android'].includes(platform),
+            mockForMacOS: platform === 'macos',
+        });
+    }
+
+    // Рендерим приложение (и веб, и Telegram версию)
+    root.render(
+        <StrictMode>
+            <ReduxProvider store={store}>
+                <Root />
+            </ReduxProvider>
+        </StrictMode>
+    );
 }
+
+bootstrap().catch(() => {
+    // В случае критической ошибки рендерим заглушку
+    root.render(<EnvUnsupported />);
+});

@@ -1,14 +1,24 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#000000"/>
-    <title>Приложение чат-бот</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <script src="/src/index.tsx" type="module"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>Приложение чат-бот</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <button onclick="document.getElementById('myWidgetFrame').style.display='block'">
+    Открыть чат-бот
+  </button>
+  <iframe id="myWidgetFrame" src="https://docs.crm-tg-mini-app.tw1.ru/"
+    style="width: 400px; height: 600px; border: none; display: none; position: fixed; right: 20px; bottom: 20px; z-index: 1000; background: white; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
+  </iframe>
+
+  <script src="/src/index.tsx" type="module"></script>
+</body>
+
 </html>
