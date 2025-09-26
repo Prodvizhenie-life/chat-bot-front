@@ -18,6 +18,8 @@ export const IndexPage: FC = () => {
             <p className="text-2xl ...">The quick brown fox ...</p>
 
             <p className="italic font-bold text-7xl">The quick brown fox ...</p>
+
+            <button className='btn btn-primary'>Кнопка</button>
         </Page>
     );
 };
