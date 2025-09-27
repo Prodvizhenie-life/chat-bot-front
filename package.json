@@ -15,6 +15,8 @@
     "predeploy": "npm run build"
   },
   "dependencies": {
+    "@headlessui/react": "2.2.9",
+    "@heroicons/react": "2.2.0",
     "@hookform/resolvers": "5.2.2",
     "@reduxjs/toolkit": "2.9.0",
     "@tailwindcss/vite": "4.1.13",
@@ -29,7 +31,7 @@
     "react-redux": "9.2.0",
     "react-router-dom": "6.30.1",
     "swiper": "12.0.2",
-    "tailwind-scrollbar": "^4.0.2",
+    "tailwind-scrollbar": "4.0.2",
     "tailwindcss": "4.1.13",
     "yup": "1.7.1"
   },
