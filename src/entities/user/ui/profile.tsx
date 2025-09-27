@@ -11,7 +11,7 @@ export const ProfileUI: FC<ProfileUIProps> = ({ user }) => {
 
     return (
         <div
-            className="w-full h-full flex flex-col gap-6 items-center max-w-xs mx-auto pt-30 p-4"
+            className="w-full h-full flex flex-col gap-6 items-center pt-30 p-4"
             style={{ minHeight: '100vh' }}
         >
             <Avatar image={user.image} name={user.firstName} size="xl" />
