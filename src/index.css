@@ -45,5 +45,14 @@
   --noise: 0;
 }
 
-@plugin "tailwind-scrollbar"
+@plugin "tailwind-scrollbar";
 
+.swiper {
+    .swiper-pagination-bullet {
+
+      @apply bg-base-300 opacity-50; /* Цвет неактивных точек */
+    }
+    .swiper-pagination-bullet-active {
+      @apply bg-base-300 opacity-100; /* Цвет активной точки */
+    }
+}

@@ -8,7 +8,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { store } from '@/app/store/store';
 import { Root } from '@/app/root.tsx';
 
-import { setIsTelegram } from '@/features/env-mode/model/env-mode';
+import { setIsTelegram } from '@/features/env-mode/model/env-mode-slice.ts';
 import { init } from '@/init.ts';
 import { EnvUnsupported } from './shared/ui/env-unsupported/env-unsupported.tsx';
 

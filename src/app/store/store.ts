@@ -1,5 +1,5 @@
 import { userApi } from '@/entities/user/api/user-api';
-import { envModeSlice } from '@/features/env-mode/model/env-mode';
+import { envModeSlice } from '@/features/env-mode/model/env-mode-slice';
 import { configureStore, Action, ThunkAction, ThunkMiddleware, UnknownAction } from '@reduxjs/toolkit';
 
 import logger from 'redux-logger';
