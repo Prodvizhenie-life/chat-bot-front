@@ -9,7 +9,7 @@ export const Onboarding: FC = () => {
     const [activeIdx, setActiveIdx] = useState(0);
     return (
         <div
-            className="w-full h-full flex flex-col items-center justify-between max-w-xs mx-auto px-3 py-6"
+            className="w-full h-full flex flex-col items-center justify-between max-w-xs mx-auto py-6"
             style={{ minHeight: '100vh' }}
         >
              <SlideList slides={slides} swiperRef={swiperRef} onSlideChange={setActiveIdx} />

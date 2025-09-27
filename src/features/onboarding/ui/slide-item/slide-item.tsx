@@ -11,7 +11,7 @@ export type TSlideItemProps = {
 export const SlideItem: FC<TSlideItemProps> = ({ img, text, alt }) => {
   return (
     <li className="flex flex-col items-center gap-4 text-center">
-      {img ? <img className="w-[60%] rounded-sm" src={img} alt={alt || ''} /> : null}
+      {img ? <img className="w-full rounded-sm" src={img} alt={alt || ''} /> : null}
       <p>{text}</p>
     </li>
   );

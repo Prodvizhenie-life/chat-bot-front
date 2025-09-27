@@ -23,7 +23,7 @@ export const OnboardingControls: FC<Props> = ({ activeIdx, slidesCount, swiperRe
         <div className="flex gap-2 w-full mt-6">
             {!isLast ? (
                 <>
-                    <button className="btn btn-ghost flex-1" onClick={handleSkip}>Пропустить</button>
+                    <button className="btn btn-ghost btn-outline flex-1" onClick={handleSkip}>Пропустить</button>
                     <button className="btn btn-primary flex-1" onClick={handleNext}>Далее</button>
                 </>
             ) : (

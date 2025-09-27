@@ -1,5 +1,5 @@
 // features/onboarding/ui/slide-list/slide-list.tsx
-import { FC, useRef } from 'react';
+import { FC } from 'react';
 import { SlideItem, type TSlideItemProps } from '../slide-item/slide-item';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -19,7 +19,7 @@ export const SlideList: FC<TSlideListProps> = ({ slides, swiperRef, onSlideChang
             pagination={{ clickable: true }}
             spaceBetween={24}
             slidesPerView={1}
-            className="w-full h-[300px]"
+            className="w-full h-[380px]"
             onSwiper={swiper => {
                 if (swiperRef) swiperRef.current = swiper;
             }}
