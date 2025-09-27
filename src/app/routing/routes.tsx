@@ -1,4 +1,6 @@
 import { IndexPage } from '@/pages/index-page/index-page';
+import { LoginPage } from '@/pages/login-page/login-page';
+import { RegisterPage } from '@/pages/register-page/register-page';
 import { ProfilePage } from '@/pages/profile-page/profile-page';
 import { ReactElement } from 'react';
 
@@ -19,5 +21,7 @@ type TRouteObject = TPathRoute | TIndexRoute;
 
 export const routes: TRouteObject[] = [
     { path: '/', element: <IndexPage /> },
+    { path: '/login', element: <LoginPage /> },
+    { path: '/register', element: <RegisterPage /> },
     { path: '/profile', element: <ProfilePage /> }
 ];

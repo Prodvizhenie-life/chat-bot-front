@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
     activeIdx: number;
@@ -7,16 +8,19 @@ type Props = {
 };
 
 export const OnboardingControls: FC<Props> = ({ activeIdx, slidesCount, swiperRef }) => {
+    const navigate = useNavigate();
     const isLast = activeIdx === slidesCount - 1;
 
     const handleNext = () => {
         if (!isLast && swiperRef.current) swiperRef.current.slideNext();
     };
     const handleSkip = () => {
-        if (swiperRef.current) swiperRef.current.slideTo(slidesCount - 1);
+        navigate('/login')
     };
+
     const handleStart = () => {
         // TODO: тут навигация или закрытие онбординга
+        navigate('/login')
     };
 
     return (
