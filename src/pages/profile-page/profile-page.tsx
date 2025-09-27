@@ -4,7 +4,7 @@ import { Page } from '@/shared/ui/page/page';
 import { ProfileUI } from '@/entities/user/ui/Profile';
 
 const userMock = {
-  // image: 'https://img.daisyui.com/images/profile/demo/superperson@192.webp',
+  image: 'https://img.daisyui.com/images/profile/demo/superperson@192.webp',
   name: 'Сергей'
 }
 

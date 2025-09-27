@@ -1,8 +1,14 @@
 import { Navigate, Route, Routes, HashRouter } from 'react-router-dom';
 import { routes } from '@/app/routing/routes';
 import { AppRoot } from '@telegram-apps/telegram-ui';
+import { useEffect } from 'react';
 
 export function App() {
+
+        useEffect(() => {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }, []);
+    
     return (
         <AppRoot appearance="light" platform="base">
             <HashRouter future={{ v7_relativeSplatPath: true }}>
