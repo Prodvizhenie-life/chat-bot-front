@@ -1,20 +1,22 @@
 import type { FC } from 'react';
 
 import { Page } from '@/shared/ui/page/page';
-import { ProfileUI } from '@/entities/user/ui/Profile';
+import { ProfileUI } from '@/entities/user/ui/profile';
+import { TUser } from '@/entities/user/model/t-user';
 
-const userMock = {
+const userMock: TUser = {
+  id: '1',
   image: 'https://img.daisyui.com/images/profile/demo/superperson@192.webp',
-  name: 'Сергей'
-}
+  firstName: 'Сергей',
+  lastName: 'Иванов',
+  patronymic: 'Федорович',
+  email: 'sergey.ivanov@example.com'
+};
 
 export const ProfilePage: FC = () => {
-    return (
-        <Page back={false}>
-            <ProfileUI 
-              image={userMock.image}
-              name={userMock.name}
-            />
-        </Page>
-    );
+  return (
+    <Page back={false}>
+      <ProfileUI user={userMock} />
+    </Page>
+  );
 };
