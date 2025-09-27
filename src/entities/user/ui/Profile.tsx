@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { TUser } from '../model/t-user';
-import { Avatar } from '@/shared/ui/avatar/Avatar';
+import { Avatar } from '@/shared/ui/avatar/avatar';
 
 type ProfileUIProps = {
     user: TUser;

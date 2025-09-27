@@ -3,8 +3,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState, type FC } from 'react';
 import { FormWithTitle } from '@/shared/ui/form-with-title/form-with-title';
 import { InputField } from '@/shared/ui/input-field/input-field';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '@/shared/lib/hooks/use-app-dispatch';
+//import { useNavigate } from 'react-router-dom';
+//import { useAppDispatch } from '@/shared/lib/hooks/use-app-dispatch';
 import { TNullable } from '@/shared/model/types/t-nullable';
 import { schemaRegister } from '../../lib/schemas/schema-register';
 
@@ -17,9 +17,9 @@ import {
 import { TRegister } from '../../model/types/t-register';
 
 export const RegisterForm: FC = () => {
-    const dispatch = useAppDispatch();
+/*     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const [resError, setResError] = useState<TNullable<string>>(null);
+ */    const [resError, setResError] = useState<TNullable<string>>(null);
 
     const {
         register,
