@@ -1,0 +1,9 @@
+
+services:
+  crm_prodvizhenie_app:
+    build: ./
+    container_name: crm_prodvizhenie_app
+    ports:
+    - "${PORT_APP:-8080}:80"
+    environment:
+    - NODE_ENV=production
