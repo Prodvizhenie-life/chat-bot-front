@@ -9,12 +9,12 @@ type AvatarProps = {
 export const Avatar: FC<AvatarProps> = ({image, name, rounded = false}) => {
   const firstLetter = name.charAt(0).toLocaleUpperCase();
 
-  const roundedClass = rounded ? 'rounded-full' : 'rounded-xl';
+  const roundedClass = rounded ? 'rounded-full' : 'rounded-3xl';
 
   return (
     image ? (
       <div className="avatar">
-        <div className={`w-24 ${roundedClass}`}>
+        <div className={`w-32 ${roundedClass}`}>
           <img src={image} alt={`аватар пользователя ${name}`}/>
         </div>
       </div>
