@@ -1,10 +1,12 @@
+import { emailRegex } from '@/shared/lib/regex/regex';
 import * as yup from 'yup';
+
 
 export const schemaLogin = yup.object().shape({
     email: yup
         .string()
-        .email('Введите корректный email')
-        .required('Пароль обязателен'),
+        .matches(emailRegex, "Неверный формат почты")
+        .required("Почта обязательна"),
     password: yup
         .string()
         .matches(
