@@ -1,6 +1,6 @@
 import { FC, Fragment, ReactNode } from "react";
 import { Dialog, DialogPanel, DialogTitle, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/20/solid";
+//import { XMarkIcon } from "@heroicons/react/20/solid";
 
 interface FullScreenModalProps {
     isOpen: boolean;
