@@ -23,7 +23,7 @@ export const LoginForm: FC = () => {
         formState: { errors },
     } = useForm<TLogin>({
         resolver: yupResolver(schemaLogin),
-        mode: 'onChange',
+        mode: 'onSubmit',
         reValidateMode: 'onChange',
     });
 

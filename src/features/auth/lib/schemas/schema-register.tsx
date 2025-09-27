@@ -1,3 +1,4 @@
+import { emailRegex, phoneE164RuRegex } from '@/shared/lib/regex/regex';
 import * as yup from 'yup';
 
 export const schemaRegister = yup.object().shape({
@@ -8,13 +9,12 @@ export const schemaRegister = yup.object().shape({
         .required('Имя обязательно'),
     email: yup
         .string()
-        .email('Введите корректный email')
-        .required('Пароль обязателен'),
+        .matches(emailRegex, "Неверный формат почты")
+        .required("Почта обязательна"),
     phone: yup
         .string()
-        .min(3, 'Отображаемое имя должно содержать не менее 3 символов')
-        .max(50, 'Отображаемое имя не должно превышать 50 символов')
-        .required('Отображаемое имя обязательно'),
+        .matches(phoneE164RuRegex, "Формат: +7 999 999-99-99")
+        .required("Телефон обязателен"),
     password: yup
         .string()
         .matches(
