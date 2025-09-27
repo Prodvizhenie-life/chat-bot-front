@@ -20,7 +20,7 @@ export const Avatar: FC<AvatarProps> = ({image, name, rounded = false}) => {
       </div>
     ) : (
       <div className="avatar avatar-placeholder">
-        <div className={`bg-primary text-neutral-content w-24 ${roundedClass}`}>
+        <div className={`bg-primary text-neutral-content w-32 ${roundedClass}`}>
           <span className="text-3xl">{firstLetter}</span>
         </div>
       </div>
