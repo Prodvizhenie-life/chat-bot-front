@@ -1,4 +1,5 @@
 import { IndexPage } from '@/pages/index-page/index-page';
+import { ProfilePage } from '@/pages/profile-page/profile-page';
 import { ReactElement } from 'react';
 
 type TBaseRoute = {
@@ -17,5 +18,6 @@ type TIndexRoute = TBaseRoute & {
 type TRouteObject = TPathRoute | TIndexRoute;
 
 export const routes: TRouteObject[] = [
-    { path: '/', element: <IndexPage /> }
+    { path: '/', element: <IndexPage /> },
+    { path: '/profile', element: <ProfilePage /> }
 ];
