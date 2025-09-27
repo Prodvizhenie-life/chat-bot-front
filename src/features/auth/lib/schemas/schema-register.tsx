@@ -9,12 +9,12 @@ export const schemaRegister = yup.object().shape({
         .required('Имя обязательно'),
     email: yup
         .string()
-        .matches(emailRegex, "Неверный формат почты")
-        .required("Почта обязательна"),
+        .matches(emailRegex, 'Неверный формат почты')
+        .required('Почта обязательна'),
     phone: yup
         .string()
-        .matches(phoneE164RuRegex, "Формат: +7 999 999-99-99")
-        .required("Телефон обязателен"),
+        .matches(phoneE164RuRegex, 'Формат: +7 999 999-99-99')
+        .required('Телефон обязателен'),
     password: yup
         .string()
         .matches(
@@ -33,4 +33,8 @@ export const schemaRegister = yup.object().shape({
         )
         .min(8, 'Пароль должен быть не короче 8 символов')
         .required('Пароль обязателен'),
+    agree: yup
+        .bool()
+        .oneOf([true], 'Необходимо согласие с политикой конфиденциальности')
+        .required('Необходимо согласие с политикой конфиденциальности'),
 });

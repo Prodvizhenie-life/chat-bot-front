@@ -15,20 +15,23 @@ import {
     normalizeRuPhone,
 } from '@/shared/lib/formatters/phone';
 import { TRegister } from '../../model/types/t-register';
+import { PrivacyPolicyModal } from '@/shared/ui/privacy-modal/privacy-modal';
 
 export const RegisterForm: FC = () => {
-/*     const dispatch = useAppDispatch();
+    /*     const dispatch = useAppDispatch();
     const navigate = useNavigate();
- */    const [resError, setResError] = useState<TNullable<string>>(null);
+ */ const [resError, setResError] = useState<TNullable<string>>(null);
 
     const {
         register,
         handleSubmit,
-        formState: { errors }, 
+        formState: { errors },
         control,
+        watch,
+        setValue,
     } = useForm<TRegister>({
         resolver: yupResolver(schemaRegister),
-        mode: 'onSubmit', 
+        mode: 'onSubmit',
         reValidateMode: 'onChange',
         defaultValues: {
             fio: '',
@@ -48,6 +51,14 @@ export const RegisterForm: FC = () => {
         } catch (error: any) {
             setResError(error?.data?.message || 'Произошла ошибка');
         }
+    };
+    const [isPolicyOpen, setIsPolicyOpen] = useState(false);
+    
+    const agree = watch?.('agree'); // если используешь watch из useForm
+    
+    const handleAgreeFromModal = () => {
+        setValue('agree', true, { shouldValidate: true });
+        setIsPolicyOpen(false);
     };
 
     return (
@@ -128,6 +139,41 @@ export const RegisterForm: FC = () => {
                 name="password"
                 error={errors.password?.message}
                 autoComplete="new-password"
+            />
+            <label className="flex items-center gap-2 cursor-pointer w-full">
+                <input
+                    type="checkbox"
+                    {...register('agree')}
+                    checked={!!agree}
+                    onChange={(e) =>
+                        setValue('agree', e.target.checked, {
+                            shouldValidate: true,
+                        })
+                    }
+                    className="checkbox checkbox-primary mt-1"
+                />
+                <span>
+                    Я соглашаюсь с{' '}
+                    <button
+                        type="button"
+                        className="link text-primary underline"
+                        onClick={() => setIsPolicyOpen(true)}
+                        tabIndex={-1}
+                    >
+                        политикой конфиденциальности
+                    </button>
+                </span>
+            </label>
+            {errors.agree && (
+                <p className="text-error text-xs mt-1">
+                    {errors.agree.message}
+                </p>
+            )}
+
+            <PrivacyPolicyModal
+                isOpen={isPolicyOpen}
+                onClose={() => setIsPolicyOpen(false)}
+                onAgree={handleAgreeFromModal}
             />
         </FormWithTitle>
     );
