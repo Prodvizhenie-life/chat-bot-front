@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 
 import { Page } from '@/shared/ui/page/page';
-import { ProfileUI } from '@/entities/user/ui/profile';
 import { TUser } from '@/entities/user/model/t-user';
+import { ProfileUI } from '@/entities/user/ui/profile';
 
 const userMock: TUser = {
   id: '1',
