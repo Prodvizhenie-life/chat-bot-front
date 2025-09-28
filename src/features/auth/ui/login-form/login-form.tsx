@@ -3,16 +3,19 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState, type FC } from 'react';
 import { FormWithTitle } from '@/shared/ui/form-with-title/form-with-title';
 import { InputField } from '@/shared/ui/input-field/input-field';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 //import { useAppDispatch } from '@/shared/lib/hooks/use-app-dispatch';
 import { TNullable } from '@/shared/model/types/t-nullable';
 import { TLogin } from '../../model/types/t-login';
 import { schemaLogin } from '../../lib/schemas/schema-login';
+import { useGetMainFlowQuery } from '@/features/flow/api/flow-api';
 
 export const LoginForm: FC = () => {
-/*     const dispatch = useAppDispatch();
+    /*     const dispatch = useAppDispatch();
+     */
     const navigate = useNavigate();
- */    const [resError, setResError] = useState<TNullable<string>>(null);
+    const { data: flow } = useGetMainFlowQuery('flow/main-flow.json');
+    const [resError, setResError] = useState<TNullable<string>>(null);
 
     /*     const [postLogin, { isLoading }] = usePostLoginMutation();
     const [fetchUserMe] = useLazyGetUserMeQuery();
@@ -30,11 +33,10 @@ export const LoginForm: FC = () => {
     const onSubmit = async (data: TLogin) => {
         setResError(null);
         try {
+            console.log('submit payload LOGIN', data);
+            navigate(`/bot-flow/${flow?.startStep}`);
 
-            console.log(data);
             // TODO Подключить регистрацию
-
-
         } catch (error: any) {
             setResError(error.data?.message || 'Произошла ошибка');
         }

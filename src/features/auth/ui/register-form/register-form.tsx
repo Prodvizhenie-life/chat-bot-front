@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState, type FC } from 'react';
 import { FormWithTitle } from '@/shared/ui/form-with-title/form-with-title';
 import { InputField } from '@/shared/ui/input-field/input-field';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 //import { useAppDispatch } from '@/shared/lib/hooks/use-app-dispatch';
 import { TNullable } from '@/shared/model/types/t-nullable';
 import { schemaRegister } from '../../lib/schemas/schema-register';
@@ -16,11 +16,14 @@ import {
 } from '@/shared/lib/formatters/phone';
 import { TRegister } from '../../model/types/t-register';
 import { PrivacyPolicyModal } from '@/shared/ui/privacy-modal/privacy-modal';
+import { useGetMainFlowQuery } from '@/features/flow/api/flow-api';
 
 export const RegisterForm: FC = () => {
     /*     const dispatch = useAppDispatch();
+     */
     const navigate = useNavigate();
- */ const [resError, setResError] = useState<TNullable<string>>(null);
+    const [resError, setResError] = useState<TNullable<string>>(null);
+    const { data: flow } = useGetMainFlowQuery('flow/main-flow.json');
 
     const {
         register,
@@ -48,14 +51,15 @@ export const RegisterForm: FC = () => {
             // Пример: await postRegister({ ...data }).unwrap();
             // navigate('/account');
             console.log('submit payload', data);
+            navigate(`/bot-flow/${flow?.startStep}`);
         } catch (error: any) {
             setResError(error?.data?.message || 'Произошла ошибка');
         }
     };
     const [isPolicyOpen, setIsPolicyOpen] = useState(false);
-    
+
     const agree = watch?.('agree'); // если используешь watch из useForm
-    
+
     const handleAgreeFromModal = () => {
         setValue('agree', true, { shouldValidate: true });
         setIsPolicyOpen(false);

@@ -1,0 +1,182 @@
+{
+    "flowName": "Main",
+    "version": "1.0.0",
+    "startStep": "avtosave",
+    "steps": [
+        {
+            "id": "autosave",
+            "type": "info",
+            "image": "/images/main/autosave.png",
+            "text": "Данные сохраняются автоматически. Вы можете выйти и в любой момент вернуться к заполнению анкеты.",
+            "actions": [
+                {
+                    "label": "Заполнить анкету",
+                    "action": "fill_the_questionnaire",
+                    "className": "btn-primary",
+                    "next": null
+                }
+            ],
+            "prev": null,
+            "next": "what_needed"
+
+        },
+        {
+            "id": "what_needed",
+            "type": "info",
+            "text": "Что нужно приобрести?",
+            "actions": [
+                {
+                    "label": "Посмотреть анкету ещё раз",
+                    "action": "review",
+                    "next": "review"
+                },
+                {
+                    "label": "Всё ок, отправить",
+                    "action": "submit",
+                    "next": "submitted"
+                }
+            ]
+        },
+        {
+            "id": "who_fills",
+            "type": "select",
+            "text": "Кто заполняет заявку?",
+            "options": [
+                {
+                    "label": "Мать/отец/опекун/представитель",
+                    "value": "parent",
+                    "next": "ward_fio"
+                },
+                {
+                    "label": "Я есть подопечный",
+                    "value": "ward_self",
+                    "next": "ward_fio"
+                }
+            ]
+        },
+        {
+            "id": "ward_fio",
+            "type": "input",
+            "inputType": "text",
+            "label": "ФИО подопечного",
+            "placeholder": "ФИО",
+            "required": true,
+            "next": "ward_birthdate"
+        },
+        {
+            "id": "ward_birthdate",
+            "type": "input",
+            "inputType": "date",
+            "label": "Дата рождения подопечного",
+            "placeholder": "ДД.ММ.ГГГГ",
+            "required": true,
+            "next": "ward_city"
+        },
+        {
+            "id": "ward_city",
+            "type": "input",
+            "inputType": "text",
+            "label": "Город проживания подопечного",
+            "required": true,
+            "next": "ward_phone"
+        },
+        {
+            "id": "ward_phone",
+            "type": "input",
+            "inputType": "phone",
+            "label": "Номер телефона",
+            "placeholder": "+7 ХХХ ХХХ-ХХ-ХХ",
+            "required": true,
+            "next": "illness_child"
+        },
+        {
+            "id": "illness_child",
+            "type": "input",
+            "inputType": "text",
+            "label": "Укажите диагноз ребенка",
+            "placeholder": "Диагноз",
+            "required": true,
+            "next": "illness_state"
+        },
+        {
+            "id": "illness_state",
+            "type": "textarea",
+            "label": "Опишите текущее состояние здоровья и ограничения",
+            "required": false,
+            "next": "illness_date"
+        },
+        {
+            "id": "illness_date",
+            "type": "input",
+            "inputType": "date",
+            "label": "Когда был поставлен диагноз?",
+            "required": false,
+            "next": "illness_tsr"
+        },
+        {
+            "id": "illness_tsr",
+            "type": "select",
+            "text": "Прописано ли ТСР в медзаключении или ИПРА?",
+            "options": [
+                {
+                    "label": "Прописано",
+                    "value": "yes",
+                    "next": "illness_deadline"
+                },
+                {
+                    "label": "Не прописано",
+                    "value": "no",
+                    "next": "illness_deadline"
+                }
+            ]
+        },
+        {
+            "id": "illness_deadline",
+            "type": "input",
+            "inputType": "text",
+            "label": "Есть ли сроки, к которым важно получить помощь? (например, реабилитация, учеба)",
+            "required": false,
+            "next": "upload_doc"
+        },
+        {
+            "id": "upload_doc",
+            "type": "file",
+            "label": "Загрузите скан или фото паспорта подопечного (1-я страница)",
+            "fileTypes": [
+                "image/*",
+                "application/pdf"
+            ],
+            "required": true,
+            "next": "final_check"
+        },
+        {
+            "id": "final_check",
+            "type": "info",
+            "text": "Готово! Спасибо за ваше время. Давайте проверим, что все заполнено правильно.",
+            "actions": [
+                {
+                    "label": "Посмотреть анкету ещё раз",
+                    "action": "review",
+                    "next": "review"
+                },
+                {
+                    "label": "Всё ок, отправить",
+                    "action": "submit",
+                    "next": "submitted"
+                }
+            ]
+        },
+        {
+            "id": "review",
+            "type": "review",
+            "text": "Проверьте ваши данные ещё раз.",
+            "next": "final_check"
+        },
+        {
+            "id": "submitted",
+            "type": "info",
+            "text": "Ваша заявка принята! Спасибо за обращение. Мы обязательно свяжемся с вами.",
+            "next": null
+        }
+    ]
+}

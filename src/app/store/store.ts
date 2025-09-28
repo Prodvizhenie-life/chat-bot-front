@@ -1,5 +1,6 @@
 import { userApi } from '@/entities/user/api/user-api';
 import { envModeSlice } from '@/features/env-mode/model/env-mode-slice';
+import { flowApi } from '@/features/flow/api/flow-api';
 import { configureStore, Action, ThunkAction, ThunkMiddleware, UnknownAction } from '@reduxjs/toolkit';
 
 import logger from 'redux-logger';
@@ -9,11 +10,13 @@ const isDev = process.env.NODE_ENV === 'development';
 export const store = configureStore({
     reducer: {
         [userApi.reducerPath]: userApi.reducer,
+        [flowApi.reducerPath]: flowApi.reducer,
         envMode: envModeSlice.reducer,
 
     },
     middleware: (getDefaultMiddleware) => {
         const middlewares = getDefaultMiddleware().concat(
+            flowApi.middleware,
             userApi.middleware,
         )
 
