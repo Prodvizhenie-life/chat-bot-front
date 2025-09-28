@@ -10,7 +10,10 @@ export const BotFlowPage: FC = () => {
 
     if (!flow || !id) return null;
     return (
-        <Page back={true} className="w-full h-screen flex flex-col items-center justify-between min-h-screen max-w-xs mx-auto py-6">
+        <Page
+            back={true}
+            className="w-full h-screen flex flex-col items-center justify-between min-h-screen max-w-xs mx-auto py-6"
+        >
             <BotFlow flow={flow} stepId={id} />
         </Page>
     );

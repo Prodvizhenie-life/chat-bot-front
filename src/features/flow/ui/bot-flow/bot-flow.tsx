@@ -10,6 +10,7 @@ import { FileStep } from '../file-step/file-step';
 import { InfoStep } from '../info-step/info-step';
 import { ReviewStep } from '../review-step/review-step';
 import { TFlow } from '../../model/types/t-flow';
+import { ProgressBar } from '@/widgets/progress-bar/progress-bar';
 
 export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
     flow,
@@ -24,8 +25,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
 
     // Назад
     const goBack = () => {
-        if (step.prev) navigate(`/bot-flow/${step.prev}`);
-        else navigate('/');
+        navigate(-1);
     };
 
     // Далее
@@ -36,7 +36,8 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
     switch (step.type) {
         case 'input':
             return (
-                <div className='h-full w-full'>
+                <div className="h-full w-full">
+                    <ProgressBar />
                     <InputStep
                         label={step.label}
                         placeholder={step.placeholder || ''}
@@ -68,7 +69,8 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             );
         case 'textarea':
             return (
-                <div className='h-full w-full'>
+                <div className="h-full w-full">
+                    <ProgressBar />
                     <TextareaStep
                         placeholder=""
                         label={step.label}
@@ -99,19 +101,25 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             );
         case 'select':
             return (
-                <SelectStep
-                    text={step.text || ''}
-                    options={step.options}
-                    value={answers[step.id]}
-                    onSelect={(val, next) => {
-                        dispatch(setAnswer({ stepId: step.id, value: val }));
-                        goNext(next);
-                    }}
-                />
+                <div className="flex gap-2 mt-4">
+                    <ProgressBar />
+                    <SelectStep
+                        text={step.text || ''}
+                        options={step.options}
+                        value={answers[step.id]}
+                        onSelect={(val, next) => {
+                            dispatch(
+                                setAnswer({ stepId: step.id, value: val })
+                            );
+                            goNext(next);
+                        }}
+                    />
+                </div>
             );
         case 'file':
             return (
-                <div className='h-full w-full'>
+                <div className="h-full w-full">
+                    <ProgressBar />
                     <FileStep
                         label={step.label}
                         onFileChange={(file) =>
@@ -135,18 +143,21 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             );
         case 'info':
             return (
-                <div className='h-full w-full'>
-                <InfoStep
-                    text={step.text}
-                    image={step.image}
-                    actions={step.actions}
-                    onAction={(action) => goNext(action.next)}
-                />
+                <div className="h-full w-full">
+                    <InfoStep
+                        text={step.text}
+                        image={step.image}
+                        actions={step.actions}
+                        onAction={(action) => goNext(action.next)}
+                    />
                 </div>
             );
         case 'review':
             return (
-                <ReviewStep text={step.text || ''} onNext={() => goNext(step.next)} />
+                <ReviewStep
+                    text={step.text || ''}
+                    onNext={() => goNext(step.next)}
+                />
             );
         default:
             return <div>Неизвестный тип шага</div>;
