@@ -15,12 +15,12 @@ export const InfoScreenContent: FC<TInfoScreenContentProps> = ({
     <div className="flex flex-col items-center gap-4 text-center">
       {img && (
         <img 
-          className="w-full rounded-sm" 
+          className="w-full rounded-sm mb-4" 
           src={img} 
           alt={alt || ''} 
         />
       )}
-      <p className="text-base">{text}</p>
+      <p className="text-lg">{text}</p>
     </div>
   );
 };
