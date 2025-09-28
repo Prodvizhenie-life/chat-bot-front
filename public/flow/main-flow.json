@@ -1,7 +1,7 @@
 {
     "flowName": "Main",
     "version": "1.0.0",
-    "startStep": "avtosave",
+    "startStep": "autosave",
     "steps": [
         {
             "id": "autosave",
@@ -11,28 +11,30 @@
             "actions": [
                 {
                     "label": "Заполнить анкету",
-                    "action": "fill_the_questionnaire",
                     "className": "btn-primary",
-                    "next": null
-                }
-            ],
-            "prev": null,
-            "next": "what_needed"
+                    "prev": null,
+                    "next": "what_needed"
 
+                }
+            ]
         },
         {
             "id": "what_needed",
-            "type": "info",
+            "type": "select",
             "text": "Что нужно приобрести?",
-            "actions": [
+            "options": [
                 {
                     "label": "Посмотреть анкету ещё раз",
                     "action": "review",
+                    "prev": "autosave",
                     "next": "review"
+
+
                 },
                 {
                     "label": "Всё ок, отправить",
                     "action": "submit",
+                    "prev": "autosave",
                     "next": "submitted"
                 }
             ]

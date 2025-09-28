@@ -1,36 +1,30 @@
-// Тип для всего сценария
-type TFlow = {
+export type TFlow = {
     flowName: string;
     version: string;
     startStep: string;
     steps: TStep[];
 };
 
-// Универсальный шаг с обязательными полями
 type TBaseStep = {
     id: string;
     type: string;
+    next?: string;
+    prev?: string;
     text?: string;
     label?: string;
-    next?: string | null;
-    prev?: string | null;
-};
-
-// Для шагов типа "info"
-type TInfoStep = TBaseStep & {
-    type: "info";
     image?: string;
     actions?: TAction[];
 };
 
-// Для шагов выбора
-type TSelectStep = TBaseStep & {
+export type TInfoStep = TBaseStep & { type: "info" };
+export type TReviewStep = TBaseStep & { type: "review" };
+
+export type TSelectStep = TBaseStep & {
     type: "select";
     options: TOption[];
 };
 
-// Для полей ввода
-type TInputStep = TBaseStep & {
+export type TInputStep = TBaseStep & {
     type: "input";
     inputType: "text" | "date" | "phone";
     label: string;
@@ -38,45 +32,39 @@ type TInputStep = TBaseStep & {
     required?: boolean;
 };
 
-// Для многострочного текста
-type TTextareaStep = TBaseStep & {
+export type TTextareaStep = TBaseStep & {
     type: "textarea";
     label: string;
     required?: boolean;
 };
 
-// Для загрузки файлов
-type TFileStep = TBaseStep & {
+export type TFileStep = TBaseStep & {
     type: "file";
     label: string;
     fileTypes: string[];
     required?: boolean;
 };
 
-// Для шага проверки
-type TReviewStep = TBaseStep & {
-    type: "review";
-};
+export type TStep =
+    | TInfoStep
+    | TReviewStep
+    | TSelectStep
+    | TInputStep
+    | TTextareaStep
+    | TFileStep;
 
-// Универсальные типы для действий и опций
-type TAction = {
+export type TAction = {
     label: string;
     action: string;
     className?: string;
-    next?: string | null;
+    next?: string;
 };
-
-type TOption = {
+export type TOption = {
     label: string;
     value: string;
     next: string;
 };
 
-// Объединённый тип шага
-type TStep =
-    | TInfoStep
-    | TSelectStep
-    | TInputStep
-    | TTextareaStep
-    | TFileStep
-    | TReviewStep;
+export type TFlowAnswers = {
+    [stepId: string]: any;
+};

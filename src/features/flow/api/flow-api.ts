@@ -1,5 +1,6 @@
 import { TSlideItemProps } from '@/features/onboarding/ui/slide-item/slide-item';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { TFlow } from '../model/types/t-flow';
 
 export const flowApi = createApi({
     reducerPath: 'flowApi',

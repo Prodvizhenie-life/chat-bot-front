@@ -1,14 +1,12 @@
-import type { FC } from 'react';
-
-import { Page } from '@/shared/ui/page/page';
 import { useParams } from 'react-router-dom';
+import { useGetMainFlowQuery } from '@/features/flow/api/flow-api';
+import { FC } from 'react';
+import { BotFlow } from '@/features/flow/ui/bot-flow/bot-flow';
 
 export const BotFlowPage: FC = () => {
-    const { id } = useParams<{ id?: string }>();
+    const { data: flow } = useGetMainFlowQuery('flow/main-flow.json');
+    const { id } = useParams<{ id: string }>();
 
-    return (
-        <Page back={true}>
-            <div>{id}</div>        
-        </Page>
-    );
+    if (!flow || !id) return null;
+    return <BotFlow flow={flow} stepId={id} />;
 };

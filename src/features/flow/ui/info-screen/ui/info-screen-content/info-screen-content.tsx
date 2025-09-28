@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
 export type TInfoScreenContentProps = {
-  img: string;
-  text: string;
+  img?: string;
+  text?: string;
   alt?: string;
 };
 
