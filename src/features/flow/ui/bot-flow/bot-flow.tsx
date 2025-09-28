@@ -11,6 +11,8 @@ import { InfoStep } from '../info-step/info-step';
 import { ReviewStep } from '../review-step/review-step';
 import { TFlow } from '../../model/types/t-flow';
 import { ProgressBar } from '@/widgets/progress-bar/progress-bar';
+import { FlowStepLayout } from '../flow-step-layout/flow-step-layout';
+import { Menu } from '../menu/menu';
 
 export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
     flow,
@@ -36,8 +38,24 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
     switch (step.type) {
         case 'input':
             return (
-                <div className="h-full w-full">
-                    <ProgressBar />
+                <FlowStepLayout
+                    menu={<Menu />}
+                    progress={<ProgressBar />}
+                    actions={
+                        <>
+                            <button className="btn" onClick={goBack}>
+                                Назад
+                            </button>
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => goNext(step.next)}
+                                disabled={step.required && !answers[step.id]}
+                            >
+                                Далее
+                            </button>
+                        </>
+                    }
+                >
                     <InputStep
                         label={step.label}
                         placeholder={step.placeholder || ''}
@@ -53,27 +71,31 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                         inputType={step.inputType}
                         required={step.required}
                     />
-                    <div className="flex gap-2 mt-4">
-                        <button className="btn" onClick={goBack}>
-                            Назад
-                        </button>
-                        <button
-                            className="btn btn-primary"
-                            onClick={() => goNext(step.next)}
-                            disabled={step.required && !answers[step.id]}
-                        >
-                            Далее
-                        </button>
-                    </div>
-                </div>
+                </FlowStepLayout>
             );
         case 'textarea':
             return (
-                <div className="h-full w-full">
-                    <ProgressBar />
+                <FlowStepLayout
+                    menu={<Menu />}
+                    progress={<ProgressBar />}
+                    actions={
+                        <>
+                            <button className="btn" onClick={goBack}>
+                                Назад
+                            </button>
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => goNext(step.next)}
+                                disabled={step.required && !answers[step.id]}
+                            >
+                                Далее
+                            </button>
+                        </>
+                    }
+                >
                     <TextareaStep
-                        placeholder=""
                         label={step.label}
+                        placeholder=''
                         value={answers[step.id] ?? ''}
                         onValueChange={(v) =>
                             dispatch(setAnswer({ stepId: step.id, value: v }))
@@ -85,24 +107,11 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                         }
                         required={step.required}
                     />
-                    <div className="flex gap-2 mt-4">
-                        <button className="btn" onClick={goBack}>
-                            Назад
-                        </button>
-                        <button
-                            className="btn btn-primary"
-                            onClick={() => goNext(step.next)}
-                            disabled={step.required && !answers[step.id]}
-                        >
-                            Далее
-                        </button>
-                    </div>
-                </div>
+                </FlowStepLayout>
             );
         case 'select':
             return (
-                <div className="flex gap-2 mt-4">
-                    <ProgressBar />
+                <FlowStepLayout menu={<Menu />} progress={<ProgressBar />}>
                     <SelectStep
                         text={step.text || ''}
                         options={step.options}
@@ -114,12 +123,27 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                             goNext(next);
                         }}
                     />
-                </div>
+                </FlowStepLayout>
             );
         case 'file':
             return (
-                <div className="h-full w-full">
-                    <ProgressBar />
+                <FlowStepLayout
+                    menu={<Menu />}
+                    progress={<ProgressBar />}
+                    actions={
+                        <>
+                            <button className="btn" onClick={goBack}>
+                                Назад
+                            </button>
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => goNext(step.next)}
+                            >
+                                Далее
+                            </button>
+                        </>
+                    }
+                >
                     <FileStep
                         label={step.label}
                         onFileChange={(file) =>
@@ -128,18 +152,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                             )
                         }
                     />
-                    <div className="flex gap-2 mt-4">
-                        <button className="btn" onClick={goBack}>
-                            Назад
-                        </button>
-                        <button
-                            className="btn btn-primary"
-                            onClick={() => goNext(step.next)}
-                        >
-                            Далее
-                        </button>
-                    </div>
-                </div>
+                </FlowStepLayout>
             );
         case 'info':
             return (
