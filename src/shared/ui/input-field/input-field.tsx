@@ -70,7 +70,7 @@ export const InputField = <T extends FieldValues>({
     disabled: isEditable === false,
     "aria-invalid": !!error,
     "aria-describedby": error ? `${inputId}-error` : undefined,
-    className: `w-full ${multiline ? "textarea textarea-primary scrollbar-thin scrollbar-thumb-base-300 scrollbar-track-transparent" : "input input-primary"} ${error ? "input-error" : ""}`,
+    className: `w-full ${multiline ? "textarea textarea-primary scrollbar-thin scrollbar-thumb-base-300 scrollbar-track-transparent resize-none" : "input input-primary"} ${error ? "input-error" : ""}`,
     // controlled value — только если передан value
     ...(value !== undefined ? { value } : {}),
   } as const;
@@ -84,7 +84,7 @@ export const InputField = <T extends FieldValues>({
       )}
 
       {multiline ? (
-        <textarea {...(commonProps as any)} />
+        <textarea {...(commonProps as any)}/>
       ) : (
         <input
           {...(commonProps as any)}

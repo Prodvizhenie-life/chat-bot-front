@@ -4,6 +4,7 @@ import { RegisterPage } from '@/pages/register-page/register-page';
 import { ProfilePage } from '@/pages/profile-page/profile-page';
 import { ReactElement } from 'react';
 import { BotFlowPage } from '@/pages/bot-flow-page/bot-flow-page';
+import { MenuPage } from '@/pages/menu-page/menu-page';
 
 type TBaseRoute = {
     element: ReactElement;
@@ -25,5 +26,6 @@ export const routes: TRouteObject[] = [
     { path: '/login', element: <LoginPage /> },
     { path: '/register', element: <RegisterPage /> },
     { path: '/profile', element: <ProfilePage /> },
-    { path: '/bot-flow/:id', element: <BotFlowPage /> }
+    { path: '/bot-flow/:id', element: <BotFlowPage /> },
+    { path: '/menu', element: <MenuPage /> }
 ];

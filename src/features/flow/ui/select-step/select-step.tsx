@@ -9,8 +9,8 @@ type Props = {
 };
 
 export const SelectStep: FC<Props> = ({ text, options, value, onSelect }) => (
-    <div className="flex flex-col gap-4 h-full w-full">
-        {text && <div className="mb-2 text-center font-medium">{text}</div>}
+    <div className="flex flex-col justify-center gap-4 h-full w-full">
+        {text && <div className="mb-2 font-medium">{text}</div>}
         {options.map((opt) => (
             <button
                 key={opt.value}

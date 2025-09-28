@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { InputField } from '@/shared/ui/input-field/input-field';
 
 type Props = {
+    text: string;
     label: string;
     placeholder: string;
     value: string;
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export const InputStep: FC<Props> = ({
+    text,
     label,
     placeholder,
     value,
@@ -27,6 +29,8 @@ export const InputStep: FC<Props> = ({
         inputType === 'date' ? 'date' : inputType === 'phone' ? 'tel' : 'text';
 
     return (
+        <div className="flex flex-col justify-center gap-4 h-full w-full">
+        {text && <div className="mb-2 font-medium">{text}</div>}
         <InputField
             type={type}
             label={label}
@@ -44,5 +48,6 @@ export const InputStep: FC<Props> = ({
             }
             maxLength={maxLength}
         />
+    </div>
     );
 };

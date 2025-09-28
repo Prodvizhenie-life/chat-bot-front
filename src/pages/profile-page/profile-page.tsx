@@ -4,7 +4,7 @@ import { Page } from '@/shared/ui/page/page';
 import { TUser } from '@/entities/user/model/t-user';
 import { ProfileUI } from '@/entities/user/ui/profile';
 
-const userMock: TUser = {
+export const userMock: TUser = {
   id: '1',
   image: 'https://img.daisyui.com/images/profile/demo/superperson@192.webp',
   firstName: 'Сергей',
