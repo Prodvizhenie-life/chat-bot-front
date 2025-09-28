@@ -10,9 +10,8 @@ type Props = {
 };
 
 export const InfoStep: FC<Props> = ({ text, image, actions, onAction }) => (
-    <div className="flex flex-col gap-4 items-center">
+    <div className="flex flex-col h-full justify-between items-center">
         <InfoScreen img={image} alt="" text={text}/>
-
         {actions && (
             <div className="flex flex-col gap-2 w-full">
                 {actions.map((action, idx) => (

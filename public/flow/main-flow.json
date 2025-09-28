@@ -7,13 +7,13 @@
             "id": "autosave",
             "type": "info",
             "image": "/images/main/autosave.png",
-            "text": "Данные сохраняются автоматически. Вы можете выйти и в любой момент вернуться к заполнению анкеты.",
+            "text": "Данные сохраняются автоматически. Вы можете выйти и в любой момент вернуться к заполнению анкеты.",
             "actions": [
                 {
                     "label": "Заполнить анкету",
+                    "action": "fill_the_questionnaire",
                     "className": "btn btn-primary",
                     "next": "what_needed"
-
                 }
             ]
         },
@@ -23,19 +23,28 @@
             "text": "Что нужно приобрести?",
             "options": [
                 {
-                    "label": "Посмотреть анкету ещё раз",
-                    "action": "review",
-                    "className": "btn btn-primary",
-                    "prev": "autosave",
-                    "next": "review"
-
-
+                    "label": "Коляска (ТСР)",
+                    "value": "kolyaska",
+                    "next": "who_fills",
+                    "prev": "autosave"
                 },
                 {
-                    "label": "Всё ок, отправить",
-                    "action": "submit",
-                    "prev": "autosave",
-                    "next": "submitted"
+                    "label": "Приставка",
+                    "value": "pristavka",
+                    "next": "who_fills",
+                    "prev": "autosave"
+                },
+                {
+                    "label": "Комплектующие",
+                    "value": "komplekt",
+                    "next": "who_fills",
+                    "prev": "autosave"
+                },
+                {
+                    "label": "Иное",
+                    "value": "other",
+                    "next": "who_fills",
+                    "prev": "autosave"
                 }
             ]
         },
@@ -45,7 +54,7 @@
             "text": "Кто заполняет заявку?",
             "options": [
                 {
-                    "label": "Мать/отец/опекун/представитель",
+                    "label": "Мать / Отец / Опекун / Родственник",
                     "value": "parent",
                     "next": "ward_fio"
                 },
@@ -60,7 +69,8 @@
             "id": "ward_fio",
             "type": "input",
             "inputType": "text",
-            "label": "ФИО подопечного",
+            "text": "Введите ФИО подопечного",
+            "label": "",
             "placeholder": "ФИО",
             "required": true,
             "next": "ward_birthdate"
@@ -68,8 +78,9 @@
         {
             "id": "ward_birthdate",
             "type": "input",
+            "text": "Введите дату рождения подопечного",
+            "label": "",
             "inputType": "date",
-            "label": "Дата рождения подопечного",
             "placeholder": "ДД.ММ.ГГГГ",
             "required": true,
             "next": "ward_city"
@@ -78,6 +89,7 @@
             "id": "ward_city",
             "type": "input",
             "inputType": "text",
+            "text": "Введите город проживания подопечного",
             "label": "Город проживания подопечного",
             "required": true,
             "next": "ward_phone"

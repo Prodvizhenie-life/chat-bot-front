@@ -36,7 +36,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
     switch (step.type) {
         case 'input':
             return (
-                <>
+                <div className='h-full w-full'>
                     <InputStep
                         label={step.label}
                         placeholder={step.placeholder || ''}
@@ -64,11 +64,11 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                             Далее
                         </button>
                     </div>
-                </>
+                </div>
             );
         case 'textarea':
             return (
-                <>
+                <div className='h-full w-full'>
                     <TextareaStep
                         placeholder=""
                         label={step.label}
@@ -95,7 +95,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                             Далее
                         </button>
                     </div>
-                </>
+                </div>
             );
         case 'select':
             return (
@@ -111,7 +111,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             );
         case 'file':
             return (
-                <>
+                <div className='h-full w-full'>
                     <FileStep
                         label={step.label}
                         onFileChange={(file) =>
@@ -131,16 +131,18 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                             Далее
                         </button>
                     </div>
-                </>
+                </div>
             );
         case 'info':
             return (
+                <div className='h-full w-full'>
                 <InfoStep
                     text={step.text}
                     image={step.image}
                     actions={step.actions}
                     onAction={(action) => goNext(action.next)}
                 />
+                </div>
             );
         case 'review':
             return (
