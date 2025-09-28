@@ -7,7 +7,7 @@ export const flowApi = createApi({
         baseUrl: '/', // корень сайта — чтобы доставать из public
     }),
     endpoints: (builder) => ({
-        getMainFlow: builder.query<any, string>({ // TODO описать тип для flow
+        getMainFlow: builder.query<TFlow, string>({ // TODO описать тип для flow
             query: (flowPath) => ({
                 url: flowPath,
                 method: 'GET',

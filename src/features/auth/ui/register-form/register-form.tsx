@@ -16,11 +16,15 @@ import {
 } from '@/shared/lib/formatters/phone';
 import { TRegister } from '../../model/types/t-register';
 import { PrivacyPolicyModal } from '@/shared/ui/privacy-modal/privacy-modal';
+import { useGetMainFlowQuery } from '@/features/flow/api/flow-api';
 
 export const RegisterForm: FC = () => {
     /*     const dispatch = useAppDispatch();
     const navigate = useNavigate();
  */ const [resError, setResError] = useState<TNullable<string>>(null);
+    const {
+        data: flow,
+    } = useGetMainFlowQuery('flow/main-flow.json');
 
     const {
         register,
@@ -53,9 +57,9 @@ export const RegisterForm: FC = () => {
         }
     };
     const [isPolicyOpen, setIsPolicyOpen] = useState(false);
-    
+
     const agree = watch?.('agree'); // если используешь watch из useForm
-    
+
     const handleAgreeFromModal = () => {
         setValue('agree', true, { shouldValidate: true });
         setIsPolicyOpen(false);

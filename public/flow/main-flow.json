@@ -1,38 +1,24 @@
 {
-    "flowName": "Подопечный",
+    "flowName": "Main",
     "version": "1.0.0",
     "startStep": "avtosave",
     "steps": [
         {
-            "id": "welcome",
-            "type": "info",
-            "title": "Добрый день!",
-            "text": "Рады приветствовать вас в сервисе Благотворительной организации 'Продвижение'",
-            "next": "about_help"
-        },
-        {
-            "id": "about_help",
-            "type": "info",
-            "text": "Мы помогаем в приобретении инвалидных колясок, ортопедических изделий и др.",
-            "next": "need_auth"
-        },
-        {
-            "id": "need_auth",
-            "type": "info",
-            "text": "Для заполнения заявки требуется авторизация.",
-            "next": "auth"
-        },
-        {
-            "id": "auth",
-            "type": "auth",
-            "text": "Пожалуйста, войдите в систему.",
-            "next": "autosave"
-        },
-        {
             "id": "autosave",
             "type": "info",
-            "text": "Данные сохраняются автоматически. Можно прервать заполнение и вернуться позже.",
+            "image": "/images/main/autosave.png",
+            "text": "Данные сохраняются автоматически. Вы можете выйти и в любой момент вернуться к заполнению анкеты.",
+            "actions": [
+                {
+                    "label": "Заполнить анкету",
+                    "action": "fill_the_questionnaire",
+                    "className": "btn-primary",
+                    "next": null
+                }
+            ],
+            "prev": null,
             "next": "what_needed"
+
         },
         {
             "id": "what_needed",
