@@ -58,11 +58,15 @@ export type TAction = {
     action: string;
     className?: string;
     next?: string;
+    prev?: string,
+
 };
 export type TOption = {
     label: string;
     value: string;
+    className?: string;
     next: string;
+    prev?: string,
 };
 
 export type TFlowAnswers = {

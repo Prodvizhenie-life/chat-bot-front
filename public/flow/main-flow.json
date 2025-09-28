@@ -11,8 +11,7 @@
             "actions": [
                 {
                     "label": "Заполнить анкету",
-                    "className": "btn-primary",
-                    "prev": null,
+                    "className": "btn btn-primary",
                     "next": "what_needed"
 
                 }
@@ -26,6 +25,7 @@
                 {
                     "label": "Посмотреть анкету ещё раз",
                     "action": "review",
+                    "className": "btn btn-primary",
                     "prev": "autosave",
                     "next": "review"
 
