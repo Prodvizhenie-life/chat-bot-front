@@ -19,7 +19,7 @@ export const SlideList: FC<TSlideListProps> = ({ slides, swiperRef, onSlideChang
             pagination={{ clickable: true }}
             spaceBetween={24}
             slidesPerView={1}
-            className="w-full h-[380px]"
+            className="w-full h-[420px]"
             onSwiper={swiper => {
                 if (swiperRef) swiperRef.current = swiper;
             }}
