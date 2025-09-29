@@ -4,6 +4,7 @@ import { InputField } from '@/shared/ui/input-field/input-field';
 type Props = {
     label: string;
     value: string;
+    text: string;
     placeholder: string;
     onValueChange: (v: string) => void;
     error?: string;
@@ -17,16 +18,20 @@ export const TextareaStep: FC<Props> = ({
     onValueChange,
     error,
     maxLength = 1024,
-    placeholder
+    placeholder,
+    text,
 }) => (
-    <InputField
-        type="text"
-        label={label}
-        placeholder={placeholder}
-        multiline
-        value={value}
-        onValueChange={onValueChange}
-        error={error}
-        maxLength={maxLength}
-    />
+    <>
+        {text && <div className="mb-2 font-medium">{text}</div>}
+        <InputField
+            type="text"
+            label={label}
+            placeholder={placeholder}
+            multiline
+            value={value}
+            onValueChange={onValueChange}
+            error={error}
+            maxLength={maxLength}
+        />
+    </>
 );
