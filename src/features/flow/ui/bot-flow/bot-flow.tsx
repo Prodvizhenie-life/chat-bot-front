@@ -12,7 +12,7 @@ import { ReviewStep } from '../review-step/review-step';
 import { TFlow } from '../../model/types/t-flow';
 import { ProgressBar } from '@/widgets/progress-bar/progress-bar';
 import { FlowStepLayout } from '../flow-step-layout/flow-step-layout';
-import { Menu } from '../menu/menu';
+import { BurgerMenu } from '../burger-menu/burger-menu';
 
 export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
     flow,
@@ -39,7 +39,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
         case 'input':
             return (
                 <FlowStepLayout
-                    menu={<Menu />}
+                    menu={<BurgerMenu />}
                     progress={<ProgressBar />}
                     actions={
                         <>
@@ -77,7 +77,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
         case 'textarea':
             return (
                 <FlowStepLayout
-                    menu={<Menu />}
+                    menu={<BurgerMenu />}
                     progress={<ProgressBar />}
                     actions={
                         <>
@@ -113,7 +113,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
         case 'select':
             return (
                 <FlowStepLayout 
-                    menu={<Menu />} 
+                    menu={<BurgerMenu />} 
                     progress={<ProgressBar />}
                     actions={
                         <>
@@ -139,7 +139,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
         case 'file':
             return (
                 <FlowStepLayout
-                    menu={<Menu />}
+                    menu={<BurgerMenu />}
                     progress={<ProgressBar />}
                     actions={
                         <>
