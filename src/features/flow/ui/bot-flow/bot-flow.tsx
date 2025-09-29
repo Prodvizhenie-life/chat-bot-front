@@ -57,6 +57,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                     }
                 >
                     <InputStep
+                        text={step.text || ''}
                         label={step.label}
                         placeholder={step.placeholder || ''}
                         value={answers[step.id] ?? ''}
@@ -111,7 +112,17 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             );
         case 'select':
             return (
-                <FlowStepLayout menu={<Menu />} progress={<ProgressBar />}>
+                <FlowStepLayout 
+                    menu={<Menu />} 
+                    progress={<ProgressBar />}
+                    actions={
+                        <>
+                            <button className="btn" onClick={goBack}>
+                                Назад
+                            </button>
+                        </>
+                    }
+                >
                     <SelectStep
                         text={step.text || ''}
                         options={step.options}

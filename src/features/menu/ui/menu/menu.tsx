@@ -14,16 +14,16 @@ type MenuProps = {
 
 export const Menu: FC<MenuProps> = ({ user, items }) => {
   return (
-    <div className="w-full h-full flex flex-col items-center py-6"
+    <nav className="w-full h-full flex flex-col items-center justify-between max-w-xs mx-auto py-6"
         style={{ minHeight: '100vh' }}
     >
-      <div className="flex-1 flex flex-col gap-1 mt-40">
+      <ul className="flex-1 flex flex-col gap-1 mt-40 w-full">
         {items.map((item) => (
           <MenuItem key={item.path} {...item} />
         ))}
-      </div>
+      </ul>
       
       <UserInfo user={user} />
-    </div>
+    </nav>
   );
 }
