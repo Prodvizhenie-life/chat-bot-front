@@ -39,12 +39,6 @@
                     "value": "komplekt",
                     "next": "who_fills",
                     "prev": "autosave"
-                },
-                {
-                    "label": "Иное",
-                    "value": "other",
-                    "next": "who_fills",
-                    "prev": "autosave"
                 }
             ]
         },
@@ -126,7 +120,8 @@
             "id": "illness_date",
             "type": "input",
             "inputType": "date",
-            "label": "Когда был поставлен диагноз?",
+            "text": "Когда был поставлен диагноз?",
+            "label": "",
             "required": false,
             "next": "illness_tsr"
         },
