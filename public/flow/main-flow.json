@@ -166,6 +166,7 @@
         {
             "id": "final_check",
             "type": "info",
+            "image": "/images/main/final_check.png",
             "text": "Готово! Спасибо за ваше время. Давайте проверим, что все заполнено правильно",
             "actions": [
                 {
@@ -182,13 +183,22 @@
         },
         {
             "id": "review",
-            "type": "review",
+            "type": "info",
             "text": "Проверьте ваши данные ещё раз",
-            "next": "final_check"
+            "image": "/images/main/review.png",
+            "actions": [
+                {
+                    "label": "Всё ок, отправить",
+                    "action": "submit",
+                    "next": "submitted"
+                }
+            ]
+
         },
         {
             "id": "submitted",
             "type": "info",
+            "image": "/images/main/submitted.png",
             "text": "Ваша заявка принята! Спасибо за обращение. Мы обязательно свяжемся с вами",
             "next": null
         }
