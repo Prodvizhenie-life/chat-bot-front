@@ -40,7 +40,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             return (
                 <FlowStepLayout
                     menu={<BurgerMenu />}
-                    progress={<ProgressBar />}
+                    progress={<ProgressBar flow={flow} stepId={stepId}/>}
                     actions={
                         <>
                             <button className="btn" onClick={goBack}>
@@ -78,7 +78,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             return (
                 <FlowStepLayout
                     menu={<BurgerMenu />}
-                    progress={<ProgressBar />}
+                    progress={<ProgressBar flow={flow} stepId={stepId}/>}
                     actions={
                         <>
                             <button className="btn" onClick={goBack}>
@@ -115,7 +115,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             return (
                 <FlowStepLayout 
                     menu={<BurgerMenu />} 
-                    progress={<ProgressBar />}
+                    progress={<ProgressBar flow={flow} stepId={stepId}/>}
                     actions={
                         <>
                             <button className="btn" onClick={goBack}>
@@ -141,7 +141,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             return (
                 <FlowStepLayout
                     menu={<BurgerMenu />}
-                    progress={<ProgressBar />}
+                    progress={<ProgressBar flow={flow} stepId={stepId}/>}
                     actions={
                         <>
                             <button className="btn" onClick={goBack}>
