@@ -96,7 +96,8 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                 >
                     <TextareaStep
                         label={step.label}
-                        placeholder=''
+                        placeholder={step.placeholder || ''}
+                        text={step.text || ''}
                         value={answers[step.id] ?? ''}
                         onValueChange={(v) =>
                             dispatch(setAnswer({ stepId: step.id, value: v }))

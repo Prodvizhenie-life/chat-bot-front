@@ -35,6 +35,7 @@ export type TInputStep = TBaseStep & {
 export type TTextareaStep = TBaseStep & {
     type: "textarea";
     label: string;
+    placeholder?: string;
     required?: boolean;
 };
 

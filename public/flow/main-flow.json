@@ -90,15 +90,16 @@
             "type": "input",
             "inputType": "text",
             "text": "Введите город проживания подопечного",
-            "label": "Город проживания подопечного",
+            "label": "",
             "required": true,
             "next": "ward_phone"
         },
         {
             "id": "ward_phone",
             "type": "input",
+            "text": "Введите телефон",
             "inputType": "phone",
-            "label": "Номер телефона",
+            "label": "",
             "placeholder": "+7 ХХХ ХХХ-ХХ-ХХ",
             "required": true,
             "next": "illness_child"
@@ -107,7 +108,8 @@
             "id": "illness_child",
             "type": "input",
             "inputType": "text",
-            "label": "Укажите диагноз ребенка",
+            "text": "Укажите диагноз ребенка",
+            "label": "",
             "placeholder": "Диагноз",
             "required": true,
             "next": "illness_state"
@@ -115,7 +117,8 @@
         {
             "id": "illness_state",
             "type": "textarea",
-            "label": "Опишите текущее состояние здоровья и ограничения",
+            "text": "Опишите текущее состояние здоровья и ограничения",
+            "label": "",
             "required": false,
             "next": "illness_date"
         },
@@ -148,14 +151,16 @@
             "id": "illness_deadline",
             "type": "input",
             "inputType": "text",
-            "label": "Есть ли сроки, к которым важно получить помощь? (например, реабилитация, учеба)",
+            "text": "Есть ли сроки, к которым важно получить помощь? (например, реабилитация, учеба)",
+            "label": "",
             "required": false,
             "next": "upload_doc"
         },
         {
             "id": "upload_doc",
             "type": "file",
-            "label": "Загрузите скан или фото паспорта подопечного (1-я страница)",
+            "text": "Загрузите скан или фото паспорта подопечного (1-я страница)",
+            "label": "",
             "fileTypes": [
                 "image/*",
                 "application/pdf"

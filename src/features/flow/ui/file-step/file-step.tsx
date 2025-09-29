@@ -17,7 +17,7 @@ export const FileStep: FC<Props> = ({ label, onFileChange, error }) => (
                     onFileChange(e.target.files[0]);
                 }
             }}
-            className="input input-bordered"
+            className="file-input file-input-primary"
         />
         {error && <span className="text-error text-xs">{error}</span>}
     </div>
