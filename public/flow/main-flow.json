@@ -188,6 +188,11 @@
             "image": "/images/main/review.png",
             "actions": [
                 {
+                    "label": "Посмотреть анкету ещё раз",
+                    "action": "review",
+                    "next": "review"
+                },
+                {
                     "label": "Всё ок, отправить",
                     "action": "submit",
                     "next": "submitted"
