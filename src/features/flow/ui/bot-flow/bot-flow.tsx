@@ -158,6 +158,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                 >
                     <FileStep
                         label={step.label}
+                        text={step.text}
                         onFileChange={(file) =>
                             dispatch(
                                 setAnswer({ stepId: step.id, value: file })

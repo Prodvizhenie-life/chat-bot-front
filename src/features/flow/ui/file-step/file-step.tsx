@@ -2,11 +2,12 @@ import { FC, useRef, useState } from "react";
 
 type Props = {
     label: string;
+    text?: string
     onFileChange: (file: File) => void;
     error?: string;
 };
 
-export const FileStep: FC<Props> = ({ label, onFileChange, error }) => {
+export const FileStep: FC<Props> = ({ label, text, onFileChange, error }) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [file, setFile] = useState<File | null>(null);
 
@@ -31,6 +32,7 @@ export const FileStep: FC<Props> = ({ label, onFileChange, error }) => {
 
     return (
         <div className="flex flex-col gap-4 w-full">
+            {text && <div className="mb-2 font-medium">{text}</div>}
             <label className="text-sm font-medium">{label}</label>
 
             <button
