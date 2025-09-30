@@ -13,7 +13,7 @@ export const FlowStepLayout: FC<TFlowStepLayoutProps> = ({
     progress,
     menu,
 }) => (
-    <div className="h-full flex flex-col bg-base-100 relative">
+    <div className="w-full h-full flex flex-col bg-base-100 relative">
         {/* Верхний блок с меню и прогрессом */}
         <div className="flex flex-col items-center justify-between px-4">
             <div>{menu}</div>
