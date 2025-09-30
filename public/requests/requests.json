@@ -1,0 +1,84 @@
+{
+  "requests": [
+    {
+      "id": "REQ-001",
+      "status": "draft",
+      "createdAt": "2025-09-25T12:30:00Z",
+      "updatedAt": "2025-09-28T09:00:00Z",
+      "user": {
+        "id": "USER-123",
+        "name": "Иванова Мария Петровна",
+        "phone": "+7 912 555-44-33",
+        "email": "maria.ivanova@example.com"
+      },
+      "categories": [
+        {
+          "id": "general",
+          "label": "Общая информация",
+          "completed": true
+        },
+        {
+          "id": "details",
+          "label": "Подробная информация",
+          "completed": false
+        },
+        {
+          "id": "documents",
+          "label": "Документы",
+          "completed": false
+        }
+      ],
+      "answers": {
+        "what_needed": "kolyaska",
+        "who_fills": "parent",
+        "ward_fio": "Иванов Алексей Сергеевич",
+        "ward_birthdate": "2012-05-14",
+        "ward_city": "Екатеринбург",
+        "ward_phone": "+7 999 123-45-67"
+      }
+    },
+    {
+      "id": "REQ-002",
+      "status": "submitted",
+      "createdAt": "2025-09-15T10:10:00Z",
+      "updatedAt": "2025-09-20T14:45:00Z",
+      "user": {
+        "id": "USER-456",
+        "name": "Петров Николай Андреевич",
+        "phone": "+7 913 777-22-11",
+        "email": "nikolay.petrov@example.com"
+      },
+      "categories": [
+        {
+          "id": "general",
+          "label": "Общая информация",
+          "completed": true
+        },
+        {
+          "id": "details",
+          "label": "Подробная информация",
+          "completed": true
+        },
+        {
+          "id": "documents",
+          "label": "Документы",
+          "completed": true
+        }
+      ],
+      "answers": {
+        "what_needed": "pristavka",
+        "who_fills": "ward_self",
+        "ward_fio": "Петров Николай Андреевич",
+        "ward_birthdate": "2005-11-02",
+        "ward_city": "Новосибирск",
+        "ward_phone": "+7 913 777-22-11",
+        "illness_child": "ДЦП",
+        "illness_state": "Ограничена подвижность, требуется специализированное оборудование",
+        "illness_date": "2007-02-01",
+        "illness_tsr": "yes",
+        "illness_deadline": "До начала учебного года (сентябрь)",
+        "upload_doc": "/uploads/docs/passport_petrov.pdf"
+      }
+    }
+  ]
+}

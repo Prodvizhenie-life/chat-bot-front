@@ -1,8 +1,10 @@
 import { FC } from 'react';
 import { RequestLayout } from '../request-layout/request-layout';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const RequestsList: FC = () => {
+    const navigate = useNavigate();
+
     return (
         <RequestLayout 
             title='Мои заявки'
@@ -10,7 +12,7 @@ export const RequestsList: FC = () => {
             actions={
                 <button
                     className="btn btn-primary"
-                    onClick={() => {}}
+                    onClick={() => {navigate('/menu')}}
                 >
                     В личный кабинет
                 </button>

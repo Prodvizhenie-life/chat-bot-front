@@ -5,18 +5,13 @@ import { Menu } from '@/features/menu/ui/menu/menu';
 import { userMock } from '../profile-page/profile-page';
 
 const itemsMock = [
-  {
-      label: "Главная",
-      path: "/",
-      icon: "🏠"
-    },
     {
       label: "Профиль",
       path: "/profile",
     },
     {
-      label: "Настройки",
-      path: "/settings",
+      label: "Заявки",
+      path: "/requests",
     },
     {
       label: "Выход",
