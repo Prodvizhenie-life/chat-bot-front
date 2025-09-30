@@ -1,6 +1,7 @@
-import { useGetAddressSuggestionsQuery, useGetPersonSuggestionsQuery } from '@/features/ahunter-suggest/api/ahunter-suggest-api';
 import { InputWithSuggestions } from '@/features/ahunter-suggest/ui/input-with-suggetion/input-with-suggetion';
+import { InputPhoneRu } from '@/shared/ui/input-phone-ru/input-phone-ru';
 import { InputField } from '@/shared/ui/input-field/input-field';
+import { useGetAddressSuggestionsQuery, useGetPersonSuggestionsQuery } from '@/features/ahunter-suggest/api/ahunter-suggest-api';
 import { FC } from 'react';
 
 type Props = {
@@ -28,24 +29,13 @@ export const InputStep: FC<Props> = ({
     maxLength = 256,
     required
 }) => {
-    // Всегда вызываем хуки, но скипаем по необходимости
+    // Сразу получаем все хуки (без условий)
     const personSuggestions = useGetPersonSuggestionsQuery(value, { skip: inputType !== 'fio' || !value });
     const addressSuggestions = useGetAddressSuggestionsQuery(value, { skip: inputType !== 'city' || !value });
 
-    let suggestions: { value: string }[] = [];
-    let loading = false;
-
+    // ФИО с подсказками
     if (inputType === 'fio') {
-        suggestions = (personSuggestions.data?.suggestions ?? []).map(s => ({ value: s.value }));
-        loading = personSuggestions.isFetching;
-    }
-    if (inputType === 'city') {
-        suggestions = (addressSuggestions.data?.suggestions ?? []).map(s => ({ value: s.value }));
-        loading = addressSuggestions.isFetching;
-    }
-
-    // Выбор компонента в зависимости от inputType
-    if (inputType === 'fio' || inputType === 'city') {
+        const suggestions = (personSuggestions.data?.suggestions ?? []).map(s => ({ value: s.value }));
         return (
             <div className="flex flex-col justify-center gap-4 h-full w-full">
                 {text && <div className="mb-2 font-medium">{text}</div>}
@@ -55,7 +45,7 @@ export const InputStep: FC<Props> = ({
                     value={value}
                     onValueChange={onValueChange}
                     suggestions={suggestions}
-                    loading={loading}
+                    loading={personSuggestions.isFetching}
                     error={error}
                     required={required}
                     maxLength={maxLength}
@@ -64,12 +54,48 @@ export const InputStep: FC<Props> = ({
         );
     }
 
-    // Остальные типы — стандартно
+    // Город (адрес) с подсказками
+    if (inputType === 'city') {
+        const suggestions = (addressSuggestions.data?.suggestions ?? []).map(s => ({ value: s.value }));
+        return (
+            <div className="flex flex-col justify-center gap-4 h-full w-full">
+                {text && <div className="mb-2 font-medium">{text}</div>}
+                <InputWithSuggestions
+                    label={label}
+                    placeholder={placeholder}
+                    value={value}
+                    onValueChange={onValueChange}
+                    suggestions={suggestions}
+                    loading={addressSuggestions.isFetching}
+                    error={error}
+                    required={required}
+                    maxLength={maxLength}
+                />
+            </div>
+        );
+    }
+
+    // Телефон с маской (InputPhoneRu)
+    if (inputType === 'phone') {
+        return (
+            <div className="flex flex-col justify-center gap-4 h-full w-full">
+                {text && <div className="mb-2 font-medium">{text}</div>}
+                <InputPhoneRu
+                    label={label}
+                    value={value}
+                    onValueChange={onValueChange}
+                    error={error}
+                    required={required}
+                    maxLength={18}
+                />
+            </div>
+        );
+    }
+
+    // Обычные поля: текст, дата и т.д.
     const type =
         inputType === 'date'
             ? 'date'
-            : inputType === 'phone'
-            ? 'tel'
             : 'text';
 
     return (
@@ -83,13 +109,7 @@ export const InputStep: FC<Props> = ({
                 onValueChange={onValueChange}
                 error={error}
                 autoComplete={autoComplete}
-                inputMode={
-                    inputType === 'phone'
-                        ? 'tel'
-                        : inputType === 'date'
-                        ? 'numeric'
-                        : undefined
-                }
+                inputMode={inputType === 'date' ? 'numeric' : undefined}
                 maxLength={maxLength}
             />
         </div>
