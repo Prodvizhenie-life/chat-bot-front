@@ -62,7 +62,7 @@
         {
             "id": "ward_fio",
             "type": "input",
-            "inputType": "text",
+            "inputType": "fio",
             "text": "Введите ФИО подопечного",
             "label": "",
             "placeholder": "ФИО",
@@ -82,7 +82,7 @@
         {
             "id": "ward_city",
             "type": "input",
-            "inputType": "text",
+            "inputType": "city",
             "text": "Введите город проживания подопечного",
             "label": "",
             "required": true,

@@ -1,4 +1,5 @@
 import { userApi } from '@/entities/user/api/user-api';
+import { ahunterSuggestApi } from '@/features/ahunter-suggest/api/ahunter-suggest-api';
 import { envModeSlice } from '@/features/env-mode/model/env-mode-slice';
 import { flowApi } from '@/features/flow/api/flow-api';
 import { flowSlice } from '@/features/flow/model/flow-slice';
@@ -12,6 +13,7 @@ export const store = configureStore({
     reducer: {
         [userApi.reducerPath]: userApi.reducer,
         [flowApi.reducerPath]: flowApi.reducer,
+        [ahunterSuggestApi.reducerPath]: ahunterSuggestApi.reducer,
         envMode: envModeSlice.reducer,
         flow: flowSlice.reducer,
 
@@ -20,6 +22,7 @@ export const store = configureStore({
         const middlewares = getDefaultMiddleware().concat(
             flowApi.middleware,
             userApi.middleware,
+            ahunterSuggestApi.middleware,
         )
 
         if (isDev) {
