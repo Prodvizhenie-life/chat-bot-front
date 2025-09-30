@@ -28,32 +28,24 @@ export const InputStep: FC<Props> = ({
     maxLength = 256,
     required
 }) => {
-    // Вариант с подсказками для ФИО
+    // Всегда вызываем хуки, но скипаем по необходимости
+    const personSuggestions = useGetPersonSuggestionsQuery(value, { skip: inputType !== 'fio' || !value });
+    const addressSuggestions = useGetAddressSuggestionsQuery(value, { skip: inputType !== 'city' || !value });
+
+    let suggestions: { value: string }[] = [];
+    let loading = false;
+
     if (inputType === 'fio') {
-        const { data, isFetching } = useGetPersonSuggestionsQuery(value, { skip: !value });
-        const suggestions = (data?.suggestions ?? []).map(s => ({ value: s.value }));
-        return (
-            <div className="flex flex-col justify-center gap-4 h-full w-full">
-                {text && <div className="mb-2 font-medium">{text}</div>}
-                <InputWithSuggestions
-                    label={label}
-                    placeholder={placeholder}
-                    value={value}
-                    onValueChange={onValueChange}
-                    suggestions={suggestions}
-                    loading={isFetching}
-                    error={error}
-                    required={required}
-                    maxLength={maxLength}
-                />
-            </div>
-        );
+        suggestions = (personSuggestions.data?.suggestions ?? []).map(s => ({ value: s.value }));
+        loading = personSuggestions.isFetching;
+    }
+    if (inputType === 'city') {
+        suggestions = (addressSuggestions.data?.suggestions ?? []).map(s => ({ value: s.value }));
+        loading = addressSuggestions.isFetching;
     }
 
-    // Вариант с подсказками для города
-    if (inputType === 'city') {
-        const { data, isFetching } = useGetAddressSuggestionsQuery(value, { skip: !value });
-        const suggestions = (data?.suggestions ?? []).map(s => ({ value: s.value }));
+    // Выбор компонента в зависимости от inputType
+    if (inputType === 'fio' || inputType === 'city') {
         return (
             <div className="flex flex-col justify-center gap-4 h-full w-full">
                 {text && <div className="mb-2 font-medium">{text}</div>}
@@ -63,7 +55,7 @@ export const InputStep: FC<Props> = ({
                     value={value}
                     onValueChange={onValueChange}
                     suggestions={suggestions}
-                    loading={isFetching}
+                    loading={loading}
                     error={error}
                     required={required}
                     maxLength={maxLength}

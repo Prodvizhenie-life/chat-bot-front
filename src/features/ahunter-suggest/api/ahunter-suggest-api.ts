@@ -5,7 +5,7 @@ import { TAddressSuggestResponse } from '../model/types/t-address-suggest-respon
 export const ahunterSuggestApi = createApi({
     reducerPath: 'ahunterSuggestApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.VITE_SUGGEST_URL,
+        baseUrl: import.meta.env.VITE_AHUNTER_SUGGEST_URL,
     }),
     endpoints: (builder) => ({
         getPersonSuggestions: builder.query<TPersonSuggestResponse, string>({
