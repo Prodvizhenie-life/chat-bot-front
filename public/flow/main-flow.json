@@ -1,211 +1,243 @@
 {
-    "flowName": "Main",
-    "version": "1.0.0",
-    "startStep": "autosave",
-    "steps": [
+  "flowName": "Main",
+  "version": "1.0.0",
+  "categories": [
+    {
+      "id": "general",
+      "label": "Общая информация",
+      "order": 1,
+      "description": "Общие данные о подопечном"
+    },
+    {
+      "id": "details",
+      "label": "Подробная информация",
+      "order": 2,
+      "description": "Информация о диагнозе, состоянии, сроках"
+    },
+    {
+      "id": "documents",
+      "label": "Документы",
+      "order": 3,
+      "description": "Паспорт, мед. заключения и прочие документы"
+    }
+  ],
+  "startStep": "autosave",
+  "steps": [
+    {
+      "id": "autosave",
+      "type": "info",
+      "category": "general",
+      "image": "/images/main/autosave.png",
+      "text": "Данные сохраняются автоматически. Вы можете выйти и в любой момент вернуться к заполнению анкеты",
+      "actions": [
         {
-            "id": "autosave",
-            "type": "info",
-            "image": "/images/main/autosave.png",
-            "text": "Данные сохраняются автоматически. Вы можете выйти и в любой момент вернуться к заполнению анкеты",
-            "actions": [
-                {
-                    "label": "Заполнить анкету",
-                    "action": "fill_the_questionnaire",
-                    "className": "btn btn-primary",
-                    "next": "what_needed"
-                }
-            ]
-        },
-        {
-            "id": "what_needed",
-            "type": "select",
-            "text": "Что нужно приобрести?",
-            "options": [
-                {
-                    "label": "Коляска (ТСР)",
-                    "value": "kolyaska",
-                    "next": "who_fills",
-                    "prev": "autosave"
-                },
-                {
-                    "label": "Приставка",
-                    "value": "pristavka",
-                    "next": "who_fills",
-                    "prev": "autosave"
-                },
-                {
-                    "label": "Комплектующие",
-                    "value": "komplekt",
-                    "next": "who_fills",
-                    "prev": "autosave"
-                }
-            ]
-        },
-        {
-            "id": "who_fills",
-            "type": "select",
-            "text": "Кто заполняет заявку?",
-            "options": [
-                {
-                    "label": "Мать / Отец / Опекун / Родственник",
-                    "value": "parent",
-                    "next": "ward_fio"
-                },
-                {
-                    "label": "Я есть подопечный",
-                    "value": "ward_self",
-                    "next": "ward_fio"
-                }
-            ]
-        },
-        {
-            "id": "ward_fio",
-            "type": "input",
-            "inputType": "fio",
-            "text": "Введите ФИО подопечного",
-            "label": "",
-            "placeholder": "ФИО",
-            "required": true,
-            "next": "ward_birthdate"
-        },
-        {
-            "id": "ward_birthdate",
-            "type": "input",
-            "text": "Введите дату рождения подопечного",
-            "label": "",
-            "inputType": "date",
-            "placeholder": "ДД.ММ.ГГГГ",
-            "required": true,
-            "next": "ward_city"
-        },
-        {
-            "id": "ward_city",
-            "type": "input",
-            "inputType": "city",
-            "text": "Введите город проживания подопечного",
-            "label": "",
-            "required": true,
-            "next": "ward_phone"
-        },
-        {
-            "id": "ward_phone",
-            "type": "input",
-            "text": "Введите телефон",
-            "inputType": "phone",
-            "label": "",
-            "placeholder": "+7 ХХХ ХХХ-ХХ-ХХ",
-            "required": true,
-            "next": "illness_child"
-        },
-        {
-            "id": "illness_child",
-            "type": "input",
-            "inputType": "text",
-            "text": "Укажите диагноз ребенка",
-            "label": "",
-            "placeholder": "Диагноз",
-            "required": true,
-            "next": "illness_state"
-        },
-        {
-            "id": "illness_state",
-            "type": "textarea",
-            "text": "Опишите текущее состояние здоровья и ограничения",
-            "label": "",
-            "required": false,
-            "next": "illness_date"
-        },
-        {
-            "id": "illness_date",
-            "type": "input",
-            "inputType": "date",
-            "text": "Когда был поставлен диагноз?",
-            "label": "",
-            "required": false,
-            "next": "illness_tsr"
-        },
-        {
-            "id": "illness_tsr",
-            "type": "select",
-            "text": "Прописано ли ТСР в медзаключении или ИПРА?",
-            "options": [
-                {
-                    "label": "Прописано",
-                    "value": "yes",
-                    "next": "illness_deadline"
-                },
-                {
-                    "label": "Не прописано",
-                    "value": "no",
-                    "next": "illness_deadline"
-                }
-            ]
-        },
-        {
-            "id": "illness_deadline",
-            "type": "input",
-            "inputType": "text",
-            "text": "Есть ли сроки, к которым важно получить помощь? (например, реабилитация, учеба)",
-            "label": "",
-            "required": false,
-            "next": "upload_doc"
-        },
-        {
-            "id": "upload_doc",
-            "type": "file",
-            "text": "Загрузите скан или фото паспорта подопечного (1-я страница)",
-            "label": "",
-            "fileTypes": [
-                "image/*",
-                "application/pdf"
-            ],
-            "required": true,
-            "next": "final_check"
-        },
-        {
-            "id": "final_check",
-            "type": "info",
-            "image": "/images/main/final_check.png",
-            "text": "Готово! Спасибо за ваше время. Давайте проверим, что все заполнено правильно",
-            "actions": [
-                {
-                    "label": "Посмотреть анкету ещё раз",
-                    "action": "review",
-                    "next": "review"
-                },
-                {
-                    "label": "Всё ок, отправить",
-                    "action": "submit",
-                    "next": "submitted"
-                }
-            ]
-        },
-        {
-            "id": "review",
-            "type": "info",
-            "text": "Проверьте ваши данные ещё раз",
-            "image": "/images/main/review.png",
-            "actions": [
-                {
-                    "label": "Посмотреть анкету ещё раз",
-                    "action": "review",
-                    "next": "review"
-                },
-                {
-                    "label": "Всё ок, отправить",
-                    "action": "submit",
-                    "next": "submitted"
-                }
-            ]
-
-        },
-        {
-            "id": "submitted",
-            "type": "info",
-            "image": "/images/main/submitted.png",
-            "text": "Ваша заявка принята! Спасибо за обращение. Мы обязательно свяжемся с вами",
-            "next": null
+          "label": "Заполнить анкету",
+          "action": "fill_the_questionnaire",
+          "className": "btn btn-primary",
+          "next": "what_needed"
         }
-    ]
+      ]
+    },
+    {
+      "id": "what_needed",
+      "type": "select",
+      "category": "general",
+      "text": "Что нужно приобрести?",
+      "options": [
+        {
+          "label": "Коляска (ТСР)",
+          "value": "kolyaska",
+          "next": "who_fills"
+        },
+        {
+          "label": "Приставка",
+          "value": "pristavka",
+          "next": "who_fills"
+        },
+        {
+          "label": "Комплектующие",
+          "value": "komplekt",
+          "next": "who_fills"
+        }
+      ]
+    },
+    {
+      "id": "who_fills",
+      "type": "select",
+      "category": "general",
+      "text": "Кто заполняет заявку?",
+      "options": [
+        {
+          "label": "Мать / Отец / Опекун / Родственник",
+          "value": "parent",
+          "next": "ward_fio"
+        },
+        {
+          "label": "Я есть подопечный",
+          "value": "ward_self",
+          "next": "ward_fio"
+        }
+      ]
+    },
+    {
+      "id": "ward_fio",
+      "type": "input",
+      "category": "general",
+      "inputType": "fio",
+      "text": "Введите ФИО подопечного",
+      "label": "",
+      "placeholder": "ФИО",
+      "required": true,
+      "next": "ward_birthdate"
+    },
+    {
+      "id": "ward_birthdate",
+      "type": "input",
+      "category": "general",
+      "text": "Введите дату рождения подопечного",
+      "label": "",
+      "inputType": "date",
+      "placeholder": "ДД.ММ.ГГГГ",
+      "required": true,
+      "next": "ward_city"
+    },
+    {
+      "id": "ward_city",
+      "type": "input",
+      "category": "general",
+      "inputType": "city",
+      "text": "Введите город проживания подопечного",
+      "label": "",
+      "required": true,
+      "next": "ward_phone"
+    },
+    {
+      "id": "ward_phone",
+      "type": "input",
+      "category": "general",
+      "text": "Введите телефон",
+      "inputType": "phone",
+      "label": "",
+      "placeholder": "+7 ХХХ ХХХ-ХХ-ХХ",
+      "required": true,
+      "next": "illness_child"
+    },
+    {
+      "id": "illness_child",
+      "type": "input",
+      "category": "details",
+      "inputType": "text",
+      "text": "Укажите диагноз ребенка",
+      "label": "",
+      "placeholder": "Диагноз",
+      "required": true,
+      "next": "illness_state"
+    },
+    {
+      "id": "illness_state",
+      "type": "textarea",
+      "category": "details",
+      "text": "Опишите текущее состояние здоровья и ограничения",
+      "label": "",
+      "required": false,
+      "next": "illness_date"
+    },
+    {
+      "id": "illness_date",
+      "type": "input",
+      "category": "details",
+      "inputType": "date",
+      "text": "Когда был поставлен диагноз?",
+      "label": "",
+      "required": false,
+      "next": "illness_tsr"
+    },
+    {
+      "id": "illness_tsr",
+      "type": "select",
+      "category": "details",
+      "text": "Прописано ли ТСР в медзаключении или ИПРА?",
+      "options": [
+        {
+          "label": "Прописано",
+          "value": "yes",
+          "next": "illness_deadline"
+        },
+        {
+          "label": "Не прописано",
+          "value": "no",
+          "next": "illness_deadline"
+        }
+      ]
+    },
+    {
+      "id": "illness_deadline",
+      "type": "input",
+      "category": "details",
+      "inputType": "text",
+      "text": "Есть ли сроки, к которым важно получить помощь? (например, реабилитация, учеба)",
+      "label": "",
+      "required": false,
+      "next": "upload_doc"
+    },
+    {
+      "id": "upload_doc",
+      "type": "file",
+      "category": "documents",
+      "text": "Загрузите скан или фото паспорта подопечного (1-я страница)",
+      "label": "",
+      "fileTypes": [
+        "image/*",
+        "application/pdf"
+      ],
+      "required": true,
+      "next": "final_check"
+    },
+    {
+      "id": "final_check",
+      "type": "info",
+      "category": "documents",
+      "image": "/images/main/final_check.png",
+      "text": "Готово! Спасибо за ваше время. Давайте проверим, что все заполнено правильно",
+      "actions": [
+        {
+          "label": "Посмотреть анкету ещё раз",
+          "action": "review",
+          "next": "review"
+        },
+        {
+          "label": "Всё ок, отправить",
+          "action": "submit",
+          "next": "submitted"
+        }
+      ]
+    },
+    {
+      "id": "review",
+      "type": "info",
+      "category": "documents",
+      "text": "Проверьте ваши данные ещё раз",
+      "image": "/images/main/review.png",
+      "actions": [
+        {
+          "label": "Посмотреть анкету ещё раз",
+          "action": "review",
+          "next": "review"
+        },
+        {
+          "label": "Всё ок, отправить",
+          "action": "submit",
+          "next": "submitted"
+        }
+      ]
+    },
+    {
+      "id": "submitted",
+      "type": "info",
+      "category": "documents",
+      "image": "/images/main/submitted.png",
+      "text": "Ваша заявка принята! Спасибо за обращение. Мы обязательно свяжемся с вами",
+      "next": null
+    }
+  ]
 }
