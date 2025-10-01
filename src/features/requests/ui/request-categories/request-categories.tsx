@@ -32,7 +32,7 @@ export const RequestCategories: FC<TRequestCategoriesProps> = ({ categories }) =
               </>
             }
         >
-          <CategoriesList categories={categories} requestId={id} />
+          <CategoriesList categories={categories} />
         </RequestLayout>
     );
 };
