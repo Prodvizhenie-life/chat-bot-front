@@ -58,7 +58,7 @@
 
 ## 🚀 Быстро посмотреть
 
-- [Демо-страница с виджетом](https://dvizhenie-widget.website.yandexcloud.net/)
+- [Демо-страница с виджетом](https://dvizhenie-widget.website.yandexcloud.net/), круглая синяя кнопка Ч в правом нижнем углу.
 - [Mini App прямо в Telegram](https://t.me/prod_prodvizhenie_bot/app_prod)
 
 ---
