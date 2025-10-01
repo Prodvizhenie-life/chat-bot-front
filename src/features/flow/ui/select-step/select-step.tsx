@@ -5,7 +5,7 @@ type Props = {
     text: string;
     options: TOption[];
     value?: string;
-    onSelect: (value: string, next: string) => void;
+    onSelect: (value: string, option: TOption) => void;
 };
 
 export const SelectStep: FC<Props> = ({ text, options, value, onSelect }) => (
@@ -15,10 +15,8 @@ export const SelectStep: FC<Props> = ({ text, options, value, onSelect }) => (
             <button
                 key={opt.value}
                 type="button"
-                className={`btn w-full ${
-                    value === opt.value ? 'btn-primary' : 'btn-outline'
-                }`}
-                onClick={() => onSelect(opt.value, opt.next)}
+                className={`btn w-full ${value === opt.value ? 'btn-primary' : 'btn-outline'}`}
+                onClick={() => onSelect(opt.value, opt)}
             >
                 {opt.label}
             </button>

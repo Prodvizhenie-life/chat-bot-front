@@ -1,7 +1,6 @@
-import { TRootState } from '@/app/store/store';
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, generatePath } from 'react-router-dom';
 import { setAnswer } from '../../model/flow-slice';
 import { InputStep } from '../input-step/input-step';
 import { TextareaStep } from '../textarea-step/textarea-step';
@@ -13,6 +12,13 @@ import { TFlow } from '../../model/types/t-flow';
 import { ProgressBar } from '@/widgets/progress-bar/progress-bar';
 import { FlowStepLayout } from '../flow-step-layout/flow-step-layout';
 import { BurgerMenu } from '../burger-menu/burger-menu';
+import { TRootState } from '@/app/store/store';
+
+const EXTERNAL_ACTION_PREFIX = '__';
+const externalRoutes: Record<string, string | ((answers: any) => string)> = {
+    profile: '/profile',
+    exit: '/dashboard',
+};
 
 export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
     flow,
@@ -22,25 +28,57 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
     const navigate = useNavigate();
     const answers = useSelector((state: TRootState) => state.flow.answers);
 
-    const step = flow.steps.find((s: any) => s.id === stepId);
+    const step = flow.steps.find((s) => s.id === stepId);
     if (!step) return <div>Нет данных по шагу</div>;
 
-    // Назад
-    const goBack = () => {
-        navigate(-1);
-    };
+    const goBack = () => navigate(-1);
 
-    // Далее
-    const goNext = (nextId?: string) => {
-        if (nextId) navigate(`/bot-flow/${nextId}`);
-    };
+    const goNextFlow = useCallback(
+        (nextId?: string | null) => {
+            if (!nextId) return;
+            navigate(generatePath('/bot-flow/:id', { id: nextId }));
+        },
+        [navigate]
+    );
+
+    const goExternal = useCallback(
+        (action?: string) => {
+            if (!action) return false;
+            if (!action.startsWith(EXTERNAL_ACTION_PREFIX)) return false;
+            const key = action.slice(EXTERNAL_ACTION_PREFIX.length);
+            const target = externalRoutes[key];
+            if (!target) {
+                console.warn(`Unknown external action: ${action}`);
+                return true;
+            }
+            const path =
+                typeof target === 'function' ? target(answers) : target;
+            navigate(path);
+            return true;
+        },
+        [answers, navigate]
+    );
+
+    const handleAction = useCallback(
+        (payload?: { action?: string; next?: string | null }) => {
+            if (!payload) return;
+            if (goExternal(payload.action)) return;
+            if (payload.next) {
+                goNextFlow(payload.next);
+                return;
+            }
+        },
+        [goExternal, goNextFlow]
+    );
+
+    const handleNext = () => handleAction({ next: step.next });
 
     switch (step.type) {
         case 'input':
             return (
                 <FlowStepLayout
                     menu={<BurgerMenu />}
-                    progress={<ProgressBar flow={flow} stepId={stepId}/>}
+                    progress={<ProgressBar flow={flow} stepId={stepId} />}
                     actions={
                         <>
                             <button className="btn" onClick={goBack}>
@@ -48,7 +86,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                             </button>
                             <button
                                 className="btn btn-primary"
-                                onClick={() => goNext(step.next)}
+                                onClick={handleNext}
                                 disabled={step.required && !answers[step.id]}
                             >
                                 Далее
@@ -78,7 +116,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             return (
                 <FlowStepLayout
                     menu={<BurgerMenu />}
-                    progress={<ProgressBar flow={flow} stepId={stepId}/>}
+                    progress={<ProgressBar flow={flow} stepId={stepId} />}
                     actions={
                         <>
                             <button className="btn" onClick={goBack}>
@@ -86,7 +124,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                             </button>
                             <button
                                 className="btn btn-primary"
-                                onClick={() => goNext(step.next)}
+                                onClick={handleNext}
                                 disabled={step.required && !answers[step.id]}
                             >
                                 Далее
@@ -113,26 +151,27 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             );
         case 'select':
             return (
-                <FlowStepLayout 
-                    menu={<BurgerMenu />} 
-                    progress={<ProgressBar flow={flow} stepId={stepId}/>}
+                <FlowStepLayout
+                    menu={<BurgerMenu />}
+                    progress={<ProgressBar flow={flow} stepId={stepId} />}
                     actions={
-                        <>
-                            <button className="btn" onClick={goBack}>
-                                Назад
-                            </button>
-                        </>
+                        <button className="btn" onClick={goBack}>
+                            Назад
+                        </button>
                     }
                 >
                     <SelectStep
                         text={step.text || ''}
-                        options={step.options}
+                        options={step.options || []}
                         value={answers[step.id]}
-                        onSelect={(val, next) => {
+                        onSelect={(val, opt) => {
                             dispatch(
                                 setAnswer({ stepId: step.id, value: val })
                             );
-                            goNext(next);
+                            handleAction({
+                                action: opt?.action,
+                                next: opt?.next,
+                            });
                         }}
                     />
                 </FlowStepLayout>
@@ -141,7 +180,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
             return (
                 <FlowStepLayout
                     menu={<BurgerMenu />}
-                    progress={<ProgressBar flow={flow} stepId={stepId}/>}
+                    progress={<ProgressBar flow={flow} stepId={stepId} />}
                     actions={
                         <>
                             <button className="btn" onClick={goBack}>
@@ -149,7 +188,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                             </button>
                             <button
                                 className="btn btn-primary"
-                                onClick={() => goNext(step.next)}
+                                onClick={handleNext}
                             >
                                 Далее
                             </button>
@@ -157,7 +196,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                     }
                 >
                     <FileStep
-                        label={step.label}
+                        label={step.label || ''}
                         text={step.text}
                         onFileChange={(file) =>
                             dispatch(
@@ -174,17 +213,12 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                         text={step.text}
                         image={step.image}
                         actions={step.actions}
-                        onAction={(action) => goNext(action.next)}
+                        onAction={handleAction}
                     />
                 </div>
             );
         case 'review':
-            return (
-                <ReviewStep
-                    text={step.text || ''}
-                    onNext={() => goNext(step.next)}
-                />
-            );
+            return <ReviewStep text={step.text || ''} onNext={handleNext} />;
         default:
             return <div>Неизвестный тип шага</div>;
     }

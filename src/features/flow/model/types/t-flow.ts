@@ -9,7 +9,6 @@ type TBaseStep = {
     id: string;
     type: string;
     next?: string;
-    prev?: string;
     text?: string;
     label?: string;
     image?: string;
@@ -26,7 +25,7 @@ export type TSelectStep = TBaseStep & {
 
 export type TInputStep = TBaseStep & {
     type: "input";
-    inputType: "text" | "date" | "phone";
+    inputType: "text" | "date" | "phone" | "fio" | "city";
     label: string;
     placeholder?: string;
     required?: boolean;
@@ -41,7 +40,7 @@ export type TTextareaStep = TBaseStep & {
 
 export type TFileStep = TBaseStep & {
     type: "file";
-    label: string;
+    label?: string;
     fileTypes: string[];
     required?: boolean;
 };
@@ -54,20 +53,22 @@ export type TStep =
     | TTextareaStep
     | TFileStep;
 
+// Главное изменение здесь!
 export type TAction = {
     label: string;
-    action: string;
+    action?: string;
     className?: string;
     next?: string;
-    prev?: string,
-
+    prev?: string;
 };
+
 export type TOption = {
     label: string;
     value: string;
     className?: string;
-    next: string;
-    prev?: string,
+    next?: string;
+    prev?: string;
+    action?: string; // Важно для внешних переходов!
 };
 
 export type TFlowAnswers = {
