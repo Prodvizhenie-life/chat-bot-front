@@ -92,7 +92,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                 >
                     <InputStep
                         text={step.text || ''}
-                        label={step.label}
+                        label={step.label || ''}
                         placeholder={step.placeholder || ''}
                         value={answers[step.id] ?? ''}
                         onValueChange={(v) =>
@@ -129,7 +129,7 @@ export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
                     }
                 >
                     <TextareaStep
-                        label={step.label}
+                        label={step.label || ''}
                         placeholder={step.placeholder || ''}
                         text={step.text || ''}
                         value={answers[step.id] ?? ''}
