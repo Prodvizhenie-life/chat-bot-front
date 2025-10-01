@@ -13,12 +13,8 @@ import { ProgressBar } from '@/widgets/progress-bar/progress-bar';
 import { FlowStepLayout } from '../flow-step-layout/flow-step-layout';
 import { BurgerMenu } from '../burger-menu/burger-menu';
 import { TRootState } from '@/app/store/store';
-
-const EXTERNAL_ACTION_PREFIX = '__';
-const externalRoutes: Record<string, string | ((answers: any) => string)> = {
-    profile: '/profile',
-    exit: '/dashboard',
-};
+import { EXTERNAL_ACTION_PREFIX } from '../../lib/constants/EXTERNAL_ACTION_PREFIX';
+import { externalRoutes } from '../../lib/constants/external-routes';
 
 export const BotFlow: FC<{ flow: TFlow; stepId: string }> = ({
     flow,
