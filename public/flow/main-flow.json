@@ -1,6 +1,6 @@
 {
   "flowName": "Main",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "categories": [
     {
       "id": "general",
@@ -173,7 +173,7 @@
       "text": "Ваш номер телефона",
       "placeholder": "+7 ХХХ ХХХ-ХХ-ХХ",
       "required": true,
-      "next": "upload_doc"
+      "next": "prepare_documents"
     },
 
     {
@@ -259,9 +259,39 @@
       "inputType": "text",
       "text": "Есть ли сроки, к которым важно получить помощь?",
       "required": false,
-      "next": "upload_doc"
+      "next": "prepare_documents"
     },
 
+    {
+      "id": "prepare_documents",
+      "type": "info",
+      "category": "documents",
+      "image": "/images/main/prepare_docs.png",
+      "text": "Теперь загрузим необходимые документы. Мы сами подскажем, какие именно нужны — в зависимости от вашего статуса. Приготовьте, пожалуйста, фото паспорта, СНИЛС и медицинских документов.",
+      "actions": [
+        { "label": "Далее", "action": "next", "next": "check_gosuslugi" }
+      ]
+    },
+    {
+      "id": "check_gosuslugi",
+      "type": "select",
+      "category": "documents",
+      "text": "Подтверждена ли запись на Госуслугах?",
+      "options": [
+        { "label": "Да", "value": "yes", "next": "upload_doc" },
+        { "label": "Нет", "value": "no", "next": "no_gosuslugi" }
+      ]
+    },
+    {
+      "id": "no_gosuslugi",
+      "type": "info",
+      "category": "documents",
+      "image": "/images/main/no_gosuslugi.png",
+      "text": "К сожалению, без подтверждённой учётной записи мы не сможем оформить заявку официально. Вы можете подтвердить свою учётную запись и вернуться к заполнению анкеты в любое удобное время.",
+      "actions": [
+        { "label": "В личный кабинет", "action": "__profile", "next": null }
+      ]
+    },
     {
       "id": "upload_doc",
       "type": "file",
@@ -269,28 +299,62 @@
       "text": "Загрузите скан или фото паспорта (1-я страница)",
       "fileTypes": ["image/*", "application/pdf"],
       "required": true,
-      "next": "final_check"
+      "next": "completed"
     },
+
     {
-      "id": "final_check",
+      "id": "completed",
       "type": "info",
       "category": "documents",
       "image": "/images/main/final_check.png",
-      "text": "Готово! Давайте проверим, что все заполнено правильно",
+      "text": "Спасибо! Ваша анкета заполнена. Вы можете просмотреть её и подтвердить отправку.",
       "actions": [
-        { "label": "Посмотреть анкету ещё раз", "action": "review", "next": "review" },
-        { "label": "Всё ок, отправить", "action": "submit", "next": "submitted" }
+        { "label": "Посмотреть анкету ещё раз", "action": "review", "next": "choose_section" },
+        { "label": "Всё верно, отправить", "action": "submit", "next": "submitted" }
       ]
     },
     {
-      "id": "review",
+      "id": "choose_section",
+      "type": "select",
+      "category": "documents",
+      "text": "Какой блок хотите проверить?",
+      "options": [
+        { "label": "Общая информация", "value": "general", "next": "review_general" },
+        { "label": "Подробная информация", "value": "details", "next": "review_details" },
+        { "label": "Документы", "value": "documents", "next": "review_documents" }
+      ],
+      "actions": [
+        { "label": "Назад", "action": "back", "next": "completed" }
+      ]
+    },
+    {
+      "id": "review_general",
       "type": "info",
       "category": "documents",
       "image": "/images/main/review.png",
-      "text": "Проверьте ваши данные ещё раз",
+      "text": "Проверьте раздел 'Общая информация'.",
       "actions": [
-        { "label": "Посмотреть анкету ещё раз", "action": "review", "next": "review" },
-        { "label": "Всё ок, отправить", "action": "submit", "next": "submitted" }
+        { "label": "Назад", "action": "back", "next": "choose_section" }
+      ]
+    },
+    {
+      "id": "review_details",
+      "type": "info",
+      "category": "documents",
+      "image": "/images/main/review.png",
+      "text": "Проверьте раздел 'Подробная информация'.",
+      "actions": [
+        { "label": "Назад", "action": "back", "next": "choose_section" }
+      ]
+    },
+    {
+      "id": "review_documents",
+      "type": "info",
+      "category": "documents",
+      "image": "/images/main/review.png",
+      "text": "Проверьте раздел 'Документы'.",
+      "actions": [
+        { "label": "Назад", "action": "back", "next": "choose_section" }
       ]
     },
     {
@@ -298,8 +362,10 @@
       "type": "info",
       "category": "documents",
       "image": "/images/main/submitted.png",
-      "text": "Ваша заявка принята! Спасибо за обращение. Мы свяжемся с вами",
-      "next": null
+      "text": "✅ Ваша заявка принята! Спасибо, что обратились в фонд «Продвижение». Уже начали работу над вашей заявкой. Мы обязательно свяжемся с вами в ближайшее время.",
+      "actions": [
+        { "label": "В личный кабинет", "action": "exit", "next": null }
+      ]
     }
   ]
 }
