@@ -1,7 +1,7 @@
 import { TUser } from '@/entities/user/model/t-user';
 import { Avatar } from '@/shared/ui/avatar/avatar';
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 type UserInfoProps = {
   user: TUser;
@@ -9,16 +9,11 @@ type UserInfoProps = {
 
 export const UserInfo: FC<UserInfoProps> = ({ user }) => {
   const fullName = `${user.lastName} ${user.firstName} ${user.patronymic}`;
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('/profile');
-  };
   
   return (
-    <div 
+    <Link 
       className="p-4 border-t border-base-300 cursor-pointer hover:bg-base-200 transition-colors"
-      onClick={handleClick}
+      to={'/profile'}
     >
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -37,6 +32,6 @@ export const UserInfo: FC<UserInfoProps> = ({ user }) => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </div>
-    </div>
+    </Link>
   );
 }

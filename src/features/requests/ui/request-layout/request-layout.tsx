@@ -15,13 +15,13 @@ export const RequestLayout: FC<TRequestLayoutProps> = ({
 }) => (
     <div className="max-w-xs mx-auto w-full min-h-screen flex flex-col items-center py-6">
         {/* Заголовок */}
-        <div className="flex flex-col gap-3 px-4">
+        <div className="flex flex-col gap-3">
             <h2 className="font-medium text-xl">{title}</h2>
             <p className="text-sm text-neutral/80">{description}</p>
         </div>
 
         {/* Основное содержимое */}
-        <div className="flex-1 flex flex-col items-center justify-center px-4">
+        <div className="w-full flex-1 flex flex-col items-center">
             {children}
         </div>
 
