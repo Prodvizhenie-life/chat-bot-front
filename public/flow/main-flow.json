@@ -1,6 +1,6 @@
 {
   "flowName": "Main",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "categories": [
     {
       "id": "general",
@@ -44,22 +44,20 @@
       "category": "general",
       "text": "Что нужно приобрести?",
       "options": [
-        {
-          "label": "Коляска (ТСР)",
-          "value": "kolyaska",
-          "next": "who_fills"
-        },
-        {
-          "label": "Приставка",
-          "value": "pristavka",
-          "next": "who_fills"
-        },
-        {
-          "label": "Комплектующие",
-          "value": "komplekt",
-          "next": "who_fills"
-        }
+        { "label": "Коляска (ТСР)", "value": "kolyaska", "next": "who_fills" },
+        { "label": "Приставка", "value": "pristavka", "next": "who_fills" },
+        { "label": "Комплектующие", "value": "komplekt", "next": "who_fills" },
+        { "label": "Иное TCP", "value": "other_tcp", "next": "other_tcp" }
       ]
+    },
+    {
+      "id": "other_tcp",
+      "type": "textarea",
+      "category": "general",
+      "text": "Расскажите, что именно вам нужно",
+      "label": "",
+      "required": false,
+      "next": "who_fills"
     },
     {
       "id": "who_fills",
@@ -67,26 +65,18 @@
       "category": "general",
       "text": "Кто заполняет заявку?",
       "options": [
-        {
-          "label": "Мать / Отец / Опекун / Родственник",
-          "value": "parent",
-          "next": "ward_fio"
-        },
-        {
-          "label": "Я есть подопечный",
-          "value": "ward_self",
-          "next": "ward_fio"
-        }
+        { "label": "Мать / Отец / Опекун / Родственник", "value": "parent", "next": "ward_fio" },
+        { "label": "Я есть подопечный", "value": "self", "next": "applicant_fio" }
       ]
     },
+
     {
       "id": "ward_fio",
       "type": "input",
       "category": "general",
       "inputType": "fio",
       "text": "Введите ФИО подопечного",
-      "label": "",
-      "placeholder": "ФИО",
+      "placeholder": "ФИО подопечного",
       "required": true,
       "next": "ward_birthdate"
     },
@@ -94,9 +84,8 @@
       "id": "ward_birthdate",
       "type": "input",
       "category": "general",
-      "text": "Введите дату рождения подопечного",
-      "label": "",
       "inputType": "date",
+      "text": "Дата рождения подопечного",
       "placeholder": "ДД.ММ.ГГГГ",
       "required": true,
       "next": "ward_city"
@@ -106,8 +95,7 @@
       "type": "input",
       "category": "general",
       "inputType": "city",
-      "text": "Введите город проживания подопечного",
-      "label": "",
+      "text": "Город проживания подопечного",
       "required": true,
       "next": "ward_phone"
     },
@@ -115,81 +103,171 @@
       "id": "ward_phone",
       "type": "input",
       "category": "general",
-      "text": "Введите телефон",
       "inputType": "phone",
-      "label": "",
+      "text": "Телефон подопечного (если есть)",
       "placeholder": "+7 ХХХ ХХХ-ХХ-ХХ",
-      "required": true,
-      "next": "illness_child"
+      "required": false,
+      "next": "ward_illness"
     },
     {
-      "id": "illness_child",
+      "id": "ward_illness",
       "type": "input",
       "category": "details",
       "inputType": "text",
-      "text": "Укажите диагноз ребенка",
-      "label": "",
+      "text": "Диагноз подопечного",
       "placeholder": "Диагноз",
       "required": true,
-      "next": "illness_state"
+      "next": "ward_state"
     },
     {
-      "id": "illness_state",
+      "id": "ward_state",
       "type": "textarea",
       "category": "details",
-      "text": "Опишите текущее состояние здоровья и ограничения",
-      "label": "",
+      "text": "Опишите состояние здоровья подопечного и ограничения",
       "required": false,
-      "next": "illness_date"
+      "next": "ward_diagnosis_date"
     },
     {
-      "id": "illness_date",
+      "id": "ward_diagnosis_date",
       "type": "input",
       "category": "details",
       "inputType": "date",
-      "text": "Когда был поставлен диагноз?",
-      "label": "",
+      "text": "Когда был поставлен диагноз подопечному?",
       "required": false,
-      "next": "illness_tsr"
+      "next": "ward_tsr"
     },
     {
-      "id": "illness_tsr",
+      "id": "ward_tsr",
       "type": "select",
       "category": "details",
       "text": "Прописано ли ТСР в медзаключении или ИПРА?",
       "options": [
-        {
-          "label": "Прописано",
-          "value": "yes",
-          "next": "illness_deadline"
-        },
-        {
-          "label": "Не прописано",
-          "value": "no",
-          "next": "illness_deadline"
-        }
+        { "label": "Прописано", "value": "yes", "next": "ward_deadline" },
+        { "label": "Не прописано", "value": "no", "next": "ward_deadline" }
       ]
     },
     {
-      "id": "illness_deadline",
+      "id": "ward_deadline",
       "type": "input",
       "category": "details",
       "inputType": "text",
-      "text": "Есть ли сроки, к которым важно получить помощь? (например, реабилитация, учеба)",
-      "label": "",
+      "text": "Есть ли сроки, к которым важно получить помощь?",
+      "required": false,
+      "next": "applicant_fio_parent"
+    },
+    {
+      "id": "applicant_fio_parent",
+      "type": "input",
+      "category": "general",
+      "inputType": "fio",
+      "text": "Введите ваше ФИО (заявителя)",
+      "placeholder": "Ваше ФИО",
+      "required": true,
+      "next": "applicant_phone_parent"
+    },
+    {
+      "id": "applicant_phone_parent",
+      "type": "input",
+      "category": "general",
+      "inputType": "phone",
+      "text": "Ваш номер телефона",
+      "placeholder": "+7 ХХХ ХХХ-ХХ-ХХ",
+      "required": true,
+      "next": "upload_doc"
+    },
+
+    {
+      "id": "applicant_fio",
+      "type": "input",
+      "category": "general",
+      "inputType": "fio",
+      "text": "Введите ваше ФИО",
+      "placeholder": "Ваше ФИО",
+      "required": true,
+      "next": "applicant_birthdate"
+    },
+    {
+      "id": "applicant_birthdate",
+      "type": "input",
+      "category": "general",
+      "inputType": "date",
+      "text": "Ваша дата рождения",
+      "placeholder": "ДД.ММ.ГГГГ",
+      "required": true,
+      "next": "applicant_city"
+    },
+    {
+      "id": "applicant_city",
+      "type": "input",
+      "category": "general",
+      "inputType": "city",
+      "text": "Ваш город проживания",
+      "required": true,
+      "next": "applicant_phone"
+    },
+    {
+      "id": "applicant_phone",
+      "type": "input",
+      "category": "general",
+      "inputType": "phone",
+      "text": "Ваш номер телефона",
+      "placeholder": "+7 ХХХ ХХХ-ХХ-ХХ",
+      "required": true,
+      "next": "applicant_illness"
+    },
+    {
+      "id": "applicant_illness",
+      "type": "input",
+      "category": "details",
+      "inputType": "text",
+      "text": "Ваш диагноз",
+      "placeholder": "Диагноз",
+      "required": true,
+      "next": "applicant_state"
+    },
+    {
+      "id": "applicant_state",
+      "type": "textarea",
+      "category": "details",
+      "text": "Опишите ваше текущее состояние здоровья и ограничения",
+      "required": false,
+      "next": "applicant_diagnosis_date"
+    },
+    {
+      "id": "applicant_diagnosis_date",
+      "type": "input",
+      "category": "details",
+      "inputType": "date",
+      "text": "Когда был поставлен диагноз?",
+      "required": false,
+      "next": "applicant_tsr"
+    },
+    {
+      "id": "applicant_tsr",
+      "type": "select",
+      "category": "details",
+      "text": "Прописано ли ТСР в медзаключении или ИПРА?",
+      "options": [
+        { "label": "Прописано", "value": "yes", "next": "applicant_deadline" },
+        { "label": "Не прописано", "value": "no", "next": "applicant_deadline" }
+      ]
+    },
+    {
+      "id": "applicant_deadline",
+      "type": "input",
+      "category": "details",
+      "inputType": "text",
+      "text": "Есть ли сроки, к которым важно получить помощь?",
       "required": false,
       "next": "upload_doc"
     },
+
     {
       "id": "upload_doc",
       "type": "file",
       "category": "documents",
-      "text": "Загрузите скан или фото паспорта подопечного (1-я страница)",
-      "label": "",
-      "fileTypes": [
-        "image/*",
-        "application/pdf"
-      ],
+      "text": "Загрузите скан или фото паспорта (1-я страница)",
+      "fileTypes": ["image/*", "application/pdf"],
       "required": true,
       "next": "final_check"
     },
@@ -198,37 +276,21 @@
       "type": "info",
       "category": "documents",
       "image": "/images/main/final_check.png",
-      "text": "Готово! Спасибо за ваше время. Давайте проверим, что все заполнено правильно",
+      "text": "Готово! Давайте проверим, что все заполнено правильно",
       "actions": [
-        {
-          "label": "Посмотреть анкету ещё раз",
-          "action": "review",
-          "next": "review"
-        },
-        {
-          "label": "Всё ок, отправить",
-          "action": "submit",
-          "next": "submitted"
-        }
+        { "label": "Посмотреть анкету ещё раз", "action": "review", "next": "review" },
+        { "label": "Всё ок, отправить", "action": "submit", "next": "submitted" }
       ]
     },
     {
       "id": "review",
       "type": "info",
       "category": "documents",
-      "text": "Проверьте ваши данные ещё раз",
       "image": "/images/main/review.png",
+      "text": "Проверьте ваши данные ещё раз",
       "actions": [
-        {
-          "label": "Посмотреть анкету ещё раз",
-          "action": "review",
-          "next": "review"
-        },
-        {
-          "label": "Всё ок, отправить",
-          "action": "submit",
-          "next": "submitted"
-        }
+        { "label": "Посмотреть анкету ещё раз", "action": "review", "next": "review" },
+        { "label": "Всё ок, отправить", "action": "submit", "next": "submitted" }
       ]
     },
     {
@@ -236,7 +298,7 @@
       "type": "info",
       "category": "documents",
       "image": "/images/main/submitted.png",
-      "text": "Ваша заявка принята! Спасибо за обращение. Мы обязательно свяжемся с вами",
+      "text": "Ваша заявка принята! Спасибо за обращение. Мы свяжемся с вами",
       "next": null
     }
   ]
