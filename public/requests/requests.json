@@ -1,7 +1,7 @@
 {
   "requests": [
     {
-      "id": "REQ-001",
+      "id": "1",
       "status": "draft",
       "createdAt": "2025-09-25T12:30:00Z",
       "updatedAt": "2025-09-28T09:00:00Z",
@@ -38,7 +38,7 @@
       }
     },
     {
-      "id": "REQ-002",
+      "id": "2",
       "status": "submitted",
       "createdAt": "2025-09-15T10:10:00Z",
       "updatedAt": "2025-09-20T14:45:00Z",
