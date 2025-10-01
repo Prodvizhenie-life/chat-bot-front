@@ -15,7 +15,7 @@ export const RequestsList: FC<TRequestListProps> = ({ requests }) => {
           {requests.map((request) => (
             <li key={request.id}>
               <Link to={`/requests/${request.id}/categories`}>
-                <div className="flex items-center justify-between gap-3 border rounded-lg p-2 text-primary hover:bg-base-200">
+                <div className="flex items-center justify-between gap-3 border rounded-3xl py-3 px-5 text-primary hover:bg-base-200">
                   <div className="flex-1 min-w-0">
                     <h3 className="text-sm font-medium truncate">
                       Заявка №{request.id}
