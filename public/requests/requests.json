@@ -12,21 +12,9 @@
         "email": "maria.ivanova@example.com"
       },
       "categories": [
-        {
-          "id": "general",
-          "label": "Общая информация",
-          "completed": true
-        },
-        {
-          "id": "details",
-          "label": "Подробная информация",
-          "completed": false
-        },
-        {
-          "id": "documents",
-          "label": "Документы",
-          "completed": false
-        }
+        { "id": "general", "label": "Общая информация", "completed": true },
+        { "id": "details", "label": "Подробная информация", "completed": false },
+        { "id": "documents", "label": "Документы", "completed": false }
       ],
       "answers": {
         "what_needed": "kolyaska",
@@ -49,21 +37,227 @@
         "email": "nikolay.petrov@example.com"
       },
       "categories": [
-        {
-          "id": "general",
-          "label": "Общая информация",
-          "completed": true
-        },
-        {
-          "id": "details",
-          "label": "Подробная информация",
-          "completed": true
-        },
-        {
-          "id": "documents",
-          "label": "Документы",
-          "completed": true
-        }
+        { "id": "general", "label": "Общая информация", "completed": true },
+        { "id": "details", "label": "Подробная информация", "completed": true },
+        { "id": "documents", "label": "Документы", "completed": true }
+      ],
+      "answers": {
+        "what_needed": "pristavka",
+        "who_fills": "ward_self",
+        "ward_fio": "Петров Николай Андреевич",
+        "ward_birthdate": "2005-11-02",
+        "ward_city": "Новосибирск",
+        "ward_phone": "+7 913 777-22-11",
+        "illness_child": "ДЦП",
+        "illness_state": "Ограничена подвижность, требуется специализированное оборудование",
+        "illness_date": "2007-02-01",
+        "illness_tsr": "yes",
+        "illness_deadline": "До начала учебного года (сентябрь)",
+        "upload_doc": "/uploads/docs/passport_petrov.pdf"
+      }
+    },
+    {
+      "id": "3",
+      "status": "denied",
+      "createdAt": "2025-08-10T09:15:00Z",
+      "updatedAt": "2025-08-12T18:40:00Z",
+      "user": {
+        "id": "USER-789",
+        "name": "Сидорова Анна Викторовна",
+        "phone": "+7 914 222-33-44",
+        "email": "anna.sidorova@example.com"
+      },
+      "categories": [
+        { "id": "general", "label": "Общая информация", "completed": true },
+        { "id": "details", "label": "Подробная информация", "completed": true },
+        { "id": "documents", "label": "Документы", "completed": false }
+      ],
+      "answers": {
+        "what_needed": "komplekt",
+        "who_fills": "parent",
+        "ward_fio": "Сидоров Артём Викторович",
+        "ward_birthdate": "2010-03-21",
+        "ward_city": "Томск",
+        "ward_phone": "+7 914 555-66-77",
+        "ward_illness": "Аутизм",
+        "ward_state": "Требуется поддержка в обучении и адаптации"
+      }
+    },
+    {
+      "id": "4",
+      "status": "revision",
+      "createdAt": "2025-09-05T11:00:00Z",
+      "updatedAt": "2025-09-27T16:20:00Z",
+      "user": {
+        "id": "USER-321",
+        "name": "Кузнецов Андрей Михайлович",
+        "phone": "+7 915 111-22-33",
+        "email": "andrey.kuznetsov@example.com"
+      },
+      "categories": [
+        { "id": "general", "label": "Общая информация", "completed": true },
+        { "id": "details", "label": "Подробная информация", "completed": true },
+        { "id": "documents", "label": "Документы", "completed": false }
+      ],
+      "answers": {
+        "what_needed": "other_tcp",
+        "other_tcp": "Специальная кровать",
+        "who_fills": "self",
+        "applicant_fio": "Кузнецов Андрей Михайлович",
+        "applicant_birthdate": "1990-04-10",
+        "applicant_city": "Москва",
+        "applicant_phone": "+7 915 111-22-33",
+        "applicant_illness": "Травма позвоночника",
+        "applicant_state": "Нужна специализированная мебель"
+      }
+    },
+    {
+      "id": "5",
+      "status": "denied",
+      "createdAt": "2025-07-20T08:50:00Z",
+      "updatedAt": "2025-07-25T15:00:00Z",
+      "user": {
+        "id": "USER-654",
+        "name": "Васильев Дмитрий Олегович",
+        "phone": "+7 916 333-44-55",
+        "email": "dmitriy.vasiliev@example.com"
+      },
+      "categories": [
+        { "id": "general", "label": "Общая информация", "completed": true },
+        { "id": "details", "label": "Подробная информация", "completed": false },
+        { "id": "documents", "label": "Документы", "completed": false }
+      ],
+      "answers": {
+        "what_needed": "pristavka",
+        "who_fills": "parent",
+        "ward_fio": "Васильева Ольга Дмитриевна",
+        "ward_birthdate": "2015-09-30",
+        "ward_city": "Казань"
+      }
+    },
+    {
+      "id": "6",
+      "status": "revision",
+      "createdAt": "2025-09-01T14:30:00Z",
+      "updatedAt": "2025-09-29T19:10:00Z",
+      "user": {
+        "id": "USER-987",
+        "name": "Морозова Елена Сергеевна",
+        "phone": "+7 917 888-99-00",
+        "email": "elena.morozova@example.com"
+      },
+      "categories": [
+        { "id": "general", "label": "Общая информация", "completed": true },
+        { "id": "details", "label": "Подробная информация", "completed": false },
+        { "id": "documents", "label": "Документы", "completed": false }
+      ],
+      "answers": {
+        "what_needed": "kolyaska",
+        "who_fills": "self",
+        "applicant_fio": "Морозова Елена Сергеевна",
+        "applicant_birthdate": "1985-12-12",
+        "applicant_city": "Самара",
+        "applicant_phone": "+7 917 888-99-00",
+        "applicant_illness": "Рассеянный склероз",
+        "applicant_state": "Проблемы с передвижением, необходима специализированная коляска"
+      }
+    },
+    {
+      "id": "9",
+      "status": "draft",
+      "createdAt": "2025-09-25T12:30:00Z",
+      "updatedAt": "2025-09-28T09:00:00Z",
+      "user": {
+        "id": "USER-123",
+        "name": "Иванова Мария Петровна",
+        "phone": "+7 912 555-44-33",
+        "email": "maria.ivanova@example.com"
+      },
+      "categories": [
+        { "id": "general", "label": "Общая информация", "completed": true },
+        { "id": "details", "label": "Подробная информация", "completed": false },
+        { "id": "documents", "label": "Документы", "completed": false }
+      ],
+      "answers": {
+        "what_needed": "kolyaska",
+        "who_fills": "parent",
+        "ward_fio": "Иванов Алексей Сергеевич",
+        "ward_birthdate": "2012-05-14",
+        "ward_city": "Екатеринбург",
+        "ward_phone": "+7 999 123-45-67"
+      }
+    },
+    {
+      "id": "10",
+      "status": "submitted",
+      "createdAt": "2025-09-15T10:10:00Z",
+      "updatedAt": "2025-09-20T14:45:00Z",
+      "user": {
+        "id": "USER-456",
+        "name": "Петров Николай Андреевич",
+        "phone": "+7 913 777-22-11",
+        "email": "nikolay.petrov@example.com"
+      },
+      "categories": [
+        { "id": "general", "label": "Общая информация", "completed": true },
+        { "id": "details", "label": "Подробная информация", "completed": true },
+        { "id": "documents", "label": "Документы", "completed": true }
+      ],
+      "answers": {
+        "what_needed": "pristavka",
+        "who_fills": "ward_self",
+        "ward_fio": "Петров Николай Андреевич",
+        "ward_birthdate": "2005-11-02",
+        "ward_city": "Новосибирск",
+        "ward_phone": "+7 913 777-22-11",
+        "illness_child": "ДЦП",
+        "illness_state": "Ограничена подвижность, требуется специализированное оборудование",
+        "illness_date": "2007-02-01",
+        "illness_tsr": "yes",
+        "illness_deadline": "До начала учебного года (сентябрь)",
+        "upload_doc": "/uploads/docs/passport_petrov.pdf"
+      }
+    },
+    {
+      "id": "11",
+      "status": "draft",
+      "createdAt": "2025-09-25T12:30:00Z",
+      "updatedAt": "2025-09-28T09:00:00Z",
+      "user": {
+        "id": "USER-123",
+        "name": "Иванова Мария Петровна",
+        "phone": "+7 912 555-44-33",
+        "email": "maria.ivanova@example.com"
+      },
+      "categories": [
+        { "id": "general", "label": "Общая информация", "completed": true },
+        { "id": "details", "label": "Подробная информация", "completed": false },
+        { "id": "documents", "label": "Документы", "completed": false }
+      ],
+      "answers": {
+        "what_needed": "kolyaska",
+        "who_fills": "parent",
+        "ward_fio": "Иванов Алексей Сергеевич",
+        "ward_birthdate": "2012-05-14",
+        "ward_city": "Екатеринбург",
+        "ward_phone": "+7 999 123-45-67"
+      }
+    },
+    {
+      "id": "21",
+      "status": "submitted",
+      "createdAt": "2025-09-15T10:10:00Z",
+      "updatedAt": "2025-09-20T14:45:00Z",
+      "user": {
+        "id": "USER-456",
+        "name": "Петров Николай Андреевич",
+        "phone": "+7 913 777-22-11",
+        "email": "nikolay.petrov@example.com"
+      },
+      "categories": [
+        { "id": "general", "label": "Общая информация", "completed": true },
+        { "id": "details", "label": "Подробная информация", "completed": true },
+        { "id": "documents", "label": "Документы", "completed": true }
       ],
       "answers": {
         "what_needed": "pristavka",
