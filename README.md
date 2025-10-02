@@ -28,7 +28,10 @@
 - [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [@telegram-apps SDK](https://docs.telegram-mini-apps.com/packages/telegram-apps-sdk/2-x)
-- [Telegram UI](https://github.com/Telegram-Mini-Apps/TelegramUI)
+- [HeadlessUI](https://headlessui.com/)
+- [DaisyUI](https://daisyui.com/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [Telegram UI](https://github.com/Telegram-Mini-Apps/TelegramUI) (возможно уберем)
 - [Vite](https://vitejs.dev/)
 
 ---
