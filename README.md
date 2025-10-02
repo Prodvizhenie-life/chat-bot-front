@@ -26,6 +26,7 @@
 ## Используемые технологии
 
 - [React](https://react.dev/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [@telegram-apps SDK](https://docs.telegram-mini-apps.com/packages/telegram-apps-sdk/2-x)
 - [HeadlessUI](https://headlessui.com/)
